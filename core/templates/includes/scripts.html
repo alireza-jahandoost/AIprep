@@ -25,7 +25,12 @@
 <script>
     {% if messages %}
         {% for message in messages %}
-            notification['{{ message.tags }}']("<p>" + '{{ message|capfirst }}' + "</p>");
+            let notyf = new Notyf(options={duration: 10000, dismissible: true});
+            if("{{ message.tags }}" == 'error')
+                notyf.error("{{ message }}");
+            else
+                notyf.success("{{ message }}");
+            {#notification['{{ message.tags }}']("<p>" + '{{ message|capfirst }}' + "</p>");#}
         {% endfor %}
     {% endif %}
 </script>

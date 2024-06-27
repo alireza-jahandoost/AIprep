@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User
 from django.db import models
+from django.utils.translation import gettext as _
 
 
 # Create your models here.
@@ -23,7 +24,7 @@ class QuestionTypeData(models.Model):
 
 
 class Correction(models.Model):
-    question_type_data = models.ForeignKey(QuestionTypeData, on_delete=models.CASCADE)
+    question_type_data = models.ForeignKey(QuestionTypeData, on_delete=models.CASCADE, null=True, blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     answer = models.TextField(blank=True, null=True)
     correction = models.TextField(blank=True, null=True)

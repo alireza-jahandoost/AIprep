@@ -1,0 +1,72 @@
+{% extends "layouts/base.html" %}
+{% load static %}
+
+{% block title %} Settings {% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+    <main class="content">
+
+        {% include 'includes/navigation.html' %}
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="card card-body bg-white border-light shadow-sm mb-4 min-vh-100">
+                        <div class="table-responsive">
+                  <table class="table table-centered table-nowrap mb-0 rounded text-center">
+                      <thead class="thead-light">
+                          <tr>
+                              <th class="border-0">#</th>
+                              <th class="border-0">Exam Type</th>
+                              <th class="border-0">Exam Name</th>
+                              <th class="border-0">Exam Number</th>
+                              <th class="border-0">Status</th>
+                              <th class="border-0">Actions</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <!-- Item -->
+                          {% for correction in corrections %}
+                          <tr>
+                              <td class="border-0"><a href="#" class="text-primary font-weight-bold">{{ forloop.counter }}</a> </td>
+                              <td class="border-0 font-weight-bold">
+                                  {{ correction.question_type_data.question_type.name }}
+                              </td>
+                              <td class="border-0">
+                                  {{ correction.question_type_data.get_type_name_display }}
+                              </td>
+                              <td class="border-0">
+                                  {{ correction.question_type_data.type_number }}
+                              </td>
+                              <td class="border-0">
+                                  {% if correction.correction is null %}
+                                  <span class="text-warning font-weight-bold">Pending</span>
+                                  {% else %}
+                                  <span class="text-success font-weight-bold">Corrected</span>
+                                  {% endif %}
+                              </td>
+                              <td class="border-0">
+                                  -
+                              </td>
+                          </tr>
+                          <!-- End of Item -->
+                          {% endfor %}
+
+                      </tbody>
+                  </table>
+              </div>
+                    </div>
+                </div>
+            </div>
+
+        {% include 'includes/footer.html' %}
+
+    </main>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}

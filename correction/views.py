@@ -51,3 +51,9 @@ class CreateToeflIntegratedView(View):
         else:
             messages.error(request, form_validation_error(form))
         return render(request, 'toefl/create_integrated.html')
+
+
+@login_required(login_url='login')
+def ShowCorrectionsView(request):
+    corrections = Correction.objects.filter(user=request.user)
+    return render(request, 'show_corrections.html', {'corrections': corrections})

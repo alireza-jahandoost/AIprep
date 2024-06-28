@@ -39,6 +39,12 @@
                     <span>Settings</span>
                 </a>
             </li>
+            <li class="nav-item  {% if 'corrections' in segment %} active {% endif %}">
+                <a href="{% url 'show_corrections' %}" class="nav-link">
+                    <span class="sidebar-icon"><span class="fas fa-file"></span></span>
+                    <span>Corrections</span>
+                </a>
+            </li>
             <li class="nav-item">
                 <span class="nav-link  collapsed  d-flex justify-content-between align-items-center" data-toggle="collapse" data-target="#toefl-writing">
                 <span>

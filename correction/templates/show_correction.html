@@ -1,0 +1,31 @@
+{% extends "layouts/base.html" %}
+{% load static %}
+{% load markdownify %}
+
+{% block title %} Settings {% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+    <main class="content">
+
+        {% include 'includes/navigation.html' %}
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="card card-body bg-white border-light shadow-sm mb-4 min-vh-100">
+                        {{ correction.correction|markdownify }}
+                    </div>
+                </div>
+            </div>
+
+        {% include 'includes/footer.html' %}
+
+    </main>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}

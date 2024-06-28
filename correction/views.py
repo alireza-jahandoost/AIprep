@@ -2,7 +2,8 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ValidationError
 from django.db.models import Q
-from django.shortcuts import render, redirect
+from django.http import HttpResponseNotFound
+from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
 from django.utils.decorators import method_decorator
 from django.views import View
@@ -57,3 +58,9 @@ class CreateToeflIntegratedView(View):
 def ShowCorrectionsView(request):
     corrections = Correction.objects.filter(user=request.user)
     return render(request, 'show_corrections.html', {'corrections': corrections})
+@login_required(login_url='login')
+def ShowCorrectionView(request, correction_id):
+    correction = get_object_or_404(Correction, pk=correction_id)
+    if correction.correction is None:
+        return render(request, '../../core/templates/page-404.html')
+    return render(request, 'show_correction.html', {'correction': correction})

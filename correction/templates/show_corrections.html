@@ -49,7 +49,11 @@
                                   {% endif %}
                               </td>
                               <td class="border-0">
-                                  -
+                                  {% if correction.correction is not null %}
+                                  <a href="{% url 'show_correction' correction_id=correction.id %}">
+                                      <span class="fas fa-eye fa-lg text-success"></span>
+                                  </a>
+                                  {% endif %}
                               </td>
                           </tr>
                           <!-- End of Item -->

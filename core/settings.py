@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'app',  # Enable the inner app
     'customers',
     'correction',
+    'markdownify.apps.MarkdownifyConfig',
 ]
 
 MIDDLEWARE = [

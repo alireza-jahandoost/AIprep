@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User
 from django.db import models
 from django.utils.translation import gettext as _
-
+from jsonfield import JSONField
 
 # Create your models here.
 
@@ -20,7 +20,7 @@ class QuestionTypeData(models.Model):
     question_type = models.ForeignKey(QuestionType, on_delete=models.CASCADE)
     type_name = models.PositiveSmallIntegerField(choices=TYPE_CHOICES, null=True, blank=True)
     type_number = models.PositiveIntegerField(null=True, blank=True)
-    data = models.TextField()
+    data = JSONField()
 
 
 class Correction(models.Model):

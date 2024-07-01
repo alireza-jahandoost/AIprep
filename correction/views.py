@@ -35,7 +35,7 @@ class CreateToeflIntegratedView(View):
                                                                   type_name=form.cleaned_data['question_type_name'])
 
             except:
-                messages.error(request, "The specified exam does not exist!")
+                messages.error(request, "The specified exam is not supported! TPO 40-75 and NEO 01-40 are supported.")
                 context = {
                     'question_type_name': form.cleaned_data['question_type_name'],
                     'question_type_number': form.cleaned_data['question_type_number'],

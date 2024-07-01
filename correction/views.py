@@ -48,7 +48,7 @@ class CreateToeflIntegratedView(View):
                                     answer=form.cleaned_data['answer'])
             correction.save()
 
-            messages.success(request, 'Correction saved successfully')
+            messages.success(request, 'Correction submitted successfully')
         else:
             messages.error(request, form_validation_error(form))
         return render(request, 'toefl/create_integrated.html')

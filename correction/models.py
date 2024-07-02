@@ -18,8 +18,8 @@ class QuestionTypeData(models.Model):
     ]
 
     question_type = models.ForeignKey(QuestionType, on_delete=models.CASCADE)
-    type_name = models.PositiveSmallIntegerField(choices=TYPE_CHOICES, null=True, blank=True)
-    type_number = models.PositiveIntegerField(null=True, blank=True)
+    type_name = models.PositiveSmallIntegerField(choices=TYPE_CHOICES)
+    type_number = models.PositiveIntegerField()
     data = JSONField()
 
 

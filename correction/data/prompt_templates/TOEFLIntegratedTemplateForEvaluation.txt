@@ -1,0 +1,9 @@
+Please read the following text and determine if it refers to the provided reading passage. Respond with "Yes" if the text refers to the reading passage and "No" if it does not.
+
+Text:
+
+[MAIN TEXT]
+
+Reading Passage:
+
+[READING]

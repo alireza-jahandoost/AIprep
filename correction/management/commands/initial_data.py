@@ -1,5 +1,6 @@
 import os
 import re
+import string
 import sys
 
 from django.core.management import BaseCommand
@@ -21,11 +22,14 @@ class Command(BaseCommand):
         TOEFLIntegrated.save()
         # TOEFLIndependent.save()
 
+        printable_chars = set(string.printable)
+
         for file in os.listdir(TPO_DIR):
             f = open(os.path.join(TPO_DIR, file), "r", encoding="utf-8")
             x = re.findall(r"\[(?P<section>\w+)]\n(?P<content>.*?)(?=\n\[|$)", f.read(), re.DOTALL)
-            reading = x[0][1]
-            listening = x[1][1]
+
+            reading = ''.join(filter(lambda x: x in set(printable_chars), x[0][1]))
+            listening = ''.join(filter(lambda x: x in set(printable_chars), x[1][1]))
             QuestionTypeData.objects.create(question_type=TOEFLIntegrated,
                                             type_name=QuestionTypeData.TYPE_CHOICES[0][0],
                                             type_number=file.split(".")[0],
@@ -34,8 +38,8 @@ class Command(BaseCommand):
         for file in os.listdir(NEO_DIR):
             f = open(os.path.join(NEO_DIR, file), "r", encoding="utf-8")
             x = re.findall(r"\[(?P<section>\w+)]\n(?P<content>.*?)(?=\n\[|$)", f.read(), re.DOTALL)
-            reading = x[0][1]
-            listening = x[1][1]
+            reading = ''.join(filter(lambda x: x in set(printable_chars), x[0][1]))
+            listening = ''.join(filter(lambda x: x in set(printable_chars), x[1][1]))
             QuestionTypeData.objects.create(question_type=TOEFLIntegrated,
                                             type_name=QuestionTypeData.TYPE_CHOICES[1][0],
                                             type_number=file.split(".")[0],

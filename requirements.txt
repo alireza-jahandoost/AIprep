@@ -12,3 +12,5 @@ whitenoise
 Pillow
 django-markdownify
 jsonfield
+django-crontab
+google.generativeai

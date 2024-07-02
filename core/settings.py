@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'customers',
     'correction',
     'markdownify.apps.MarkdownifyConfig',
+    'django_crontab',
 ]
 
 MIDDLEWARE = [
@@ -51,6 +52,10 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+]
+
+CRONJOBS = [
+    ('* * * * *', 'correction.AIScripts.run'),
 ]
 
 ROOT_URLCONF = 'core.urls'

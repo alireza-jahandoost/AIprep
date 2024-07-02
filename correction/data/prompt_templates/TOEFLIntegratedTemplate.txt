@@ -1,0 +1,93 @@
+1. I need you to grade my TOEFL writing practice test whose purpose is write a 250-350 word essay consisting of 4 paragraphs. The writing practice test should use a formal tone typically found in first-year college composition classes:
+    The first paragraph should explain the most important points in the reading and how they are related to the most important points in the listening passage.
+    Consisting of about 100 words, the second paragraph should show how the first important point in the reading passage is related to the first crucial point in the lecture.
+    In about 100 words, the third paragraph should show how the second important point in the reading passage is related to the second crucial point in the lecture.
+    In about 100 words, the fourth paragraph should show how the third important point in the reading passage is related to the third crucial point in the lecture.
+
+2.  The practice test will need to summarize the most important points from this reading passage:
+[READING]
+
+3.  The practice test will need to summarize the most important points from this lecture:
+[LISTENING]
+
+4. Grade my essay based on how well it addresses this writing prompt:
+How does the information in the lecture contradict the information in the reading passage?
+
+5. On a scale of 0 to 30 points, grade my TOEFL writing practice test on how well it complies with this rubric which represents a score of 5.0/5.0 or 30/30 pts. When you break the total score into different categories, be sure to tell me what score I received in each area:
+A response at this level successfully selects the important information from the lecture and coherently and accurately
+presents this information in relation to the relevant information presented in the reading. The response is well organized, and
+occasional language errors that are present do not result in inaccurate or imprecise presentation of content or connections.
+
+5. Here is the practice test that I want you to grade:
+[MAIN TEXT]
+
+6. Include a line-by-line explanation of what grammar, sentence structure, mechanics, and punctuation corrections were made and why.  In addition, please let me know what grammar topics I should be reviewing based on the errors I am making.
+
+7. Offer me a revised version of my essay that you think would score 30/30 pts. according to the TOEFL rubrics I have included here.
+
+Your output should be in the following format:
+Here is a breakdown of your essay's strengths and weaknesses:
+
+**Overall Score:** [your predicted score]/30
+
+**Content:**
+
+* **Strengths:** [overall strengths of the written text]
+
+* **Weaknesses:** [overall weaknesses of the written text]
+
+**Organization:**
+
+* **Strengths:** [organization strengths of the written text]
+
+* **Weaknesses:** [organization weaknesses of the written text]
+
+**Language:**
+
+* **Strengths:** [language strengths of the written text]
+
+* **Weaknesses:** [language weaknesses of the written text]
+
+**Specific Feedback:**
+
+**Paragraph 1:**
+
+* **Strengths:** [first paragraph's strengths of the written text]
+
+* **Weaknesses:** [first paragraph's weaknesses of the written text]
+
+**Paragraph 2:**
+
+* **Strengths:** [second paragraph's strengths of the written text]
+
+* **Weaknesses:** [second paragraph's weaknesses of the written text]
+
+**Paragraph 3:**
+
+* **Strengths:** [third paragraph's strengths of the written text]
+
+* **Weaknesses:** [third paragraph's weaknesses of the written text]
+
+**Paragraph 4:**
+
+**Strengths:** [fourth paragraph's strengths of the written text]
+
+**Weaknesses:** [fourth paragraph's weaknesses of the written text]
+
+**Grammar and Mechanics:**
+
+**Common Errors:**
+
+[common errors with their explanation and examples from the text]
+
+**Areas to Review:**
+
+[Areas to improve the written text]
+
+**Revised Essay (30/30 Points):**
+
+[revised essay]
+
+**Explanation of Changes:**
+
+[Explanation of changes]

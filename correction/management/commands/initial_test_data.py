@@ -12,15 +12,15 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         user = User.objects.create_user(username="admin", email="admin@admin.com", password="password")
 
-        toefl_integrated_tpo_64_file = open("correction/test_data/toefl_integrated_tpo_64.txt")
+        toefl_integrated_tpo_64_file = open("correction/data/test_data/toefl_integrated_tpo_64.txt")
         toefl_integrated_tpo_64 = toefl_integrated_tpo_64_file.read()
         toefl_integrated_tpo_64_file.close()
 
-        toefl_integrated_tpo_73_file = open("correction/test_data/toefl_integrated_tpo_73.txt")
+        toefl_integrated_tpo_73_file = open("correction/data/test_data/toefl_integrated_tpo_73.txt")
         toefl_integrated_tpo_73 = toefl_integrated_tpo_73_file.read()
         toefl_integrated_tpo_73_file.close()
 
-        dummy_text_file = open("correction/test_data/dummy.txt")
+        dummy_text_file = open("correction/data/test_data/dummy.txt")
         dummy_text = dummy_text_file.read()
         dummy_text_file.close()
 

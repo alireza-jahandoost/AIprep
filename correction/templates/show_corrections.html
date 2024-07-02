@@ -51,7 +51,7 @@
                                   {% endif %}
                               </td>
                               <td class="border-0">
-                                  {% if correction.correction is not null %}
+                                  {% if correction.get_status_display == "Corrected" %}
                                   <a href="{% url 'show_correction' correction_id=correction.id %}">
                                       <span class="fas fa-eye fa-lg text-success"></span>
                                   </a>

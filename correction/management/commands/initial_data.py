@@ -12,8 +12,8 @@ class Command(BaseCommand):
     help = "Adds exams' data to the database."
 
     def handle(self, *args, **options):
-        TPO_DIR = "correction/data/TPO"
-        NEO_DIR = "correction/data/NEO"
+        TPO_DIR = "correction/data/TOEFL/Task1/TPO"
+        NEO_DIR = "correction/data/TOEFL/Task1/NEO"
 
         sys.stdout.write('start\n')
         sys.stdout.flush()

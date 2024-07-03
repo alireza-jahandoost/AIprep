@@ -1,0 +1,44 @@
+Please evaluate my TOEFL writing practice test, a 100-200 word paragraph essay, using the following criteria:
+Context:
+Reading Passage: 
+[READING]
+
+Writing Prompt:
+Task: Write a paragraph response to the reading passage that expresses and supports your opinion on the topic discussed.
+Tone: Use a formal tone appropriate for a first-year college composition class.
+Focus: Demonstrate your ability to contribute effectively to an online discussion.
+Grading Rubric:
+Score: Please grade my essay on a scale of 0 to 30 points, using the following rubric, which represents a score of 5.0/5.0 or 30/30 pts.
+Evaluation Areas:
+Relevance and Clarity: How well does my response contribute to the discussion and clearly express my opinion?
+Explanation and Detail: How effectively do I elaborate on my points with explanations, examples, and details?
+Language Proficiency: How effectively do I use a variety of sentence structures, precise vocabulary, and idiomatic language?
+Grammar and Mechanics: How few errors in grammar, punctuation, and spelling are present?
+My Practice Test:
+Essay: 
+[MAIN TEXT]
+
+Feedback:
+Detailed Analysis: Please provide a line-by-line explanation of any grammar, sentence structure, mechanics, and punctuation corrections needed. Explain the reasoning behind each correction.
+Grammar Review: Identify any grammar topics I should focus on reviewing based on the errors I made.
+Revised Essay: Provide a revised version of my essay that you believe would score 30/30 points according to the provided rubric.
+By following these steps, you can provide me with specific and constructive feedback that helps me improve my TOEFL writing skills.
+
+Your output should be in the following format:
+Here's a detailed analysis of your essay, addressing the areas mentioned in the rubric:
+Score: [predicted score]/30
+Relevance and Clarity:
+Strengths: [strengths in relevance and clarity]
+Areas for Improvement: [areas for improvement in relevance and clarity]
+Explanation and Detail:
+Strengths: [strengths in explanation and detail]
+Areas for Improvement: [areas for improvement in explanation and detail]
+Language Proficiency:
+Strengths: [strengths in language proficiency]
+Areas for Improvement: [areas for improvement in language proficiency]
+Grammar and Mechanics:
+Strengths: [strengths in grammar and mechanics]
+Areas for Improvement:[areas for improvement in grammar and mechanics
+Grammar Review:[grammar review]
+Revised Essay:[revised essay]
+Explanation of Revisions:[explanation of revisions]

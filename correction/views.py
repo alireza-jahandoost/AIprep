@@ -8,7 +8,7 @@ from django.urls import reverse
 from django.utils.decorators import method_decorator
 from django.views import View
 
-from correction.forms import ToeflIntegratedForm, form_validation_error
+from correction.forms import form_validation_error, ToeflWritingForm
 from correction.models import Correction, QuestionTypeData
 
 
@@ -27,7 +27,7 @@ class CreateToeflIntegratedView(View):
         return render(request, 'toefl/create_integrated.html')
 
     def post(self, request):
-        form = ToeflIntegratedForm(request.POST, request.FILES)
+        form = ToeflWritingForm(request.POST, request.FILES)
 
         if form.is_valid():
             try:
@@ -53,6 +53,45 @@ class CreateToeflIntegratedView(View):
         else:
             messages.error(request, form_validation_error(form))
         return render(request, 'toefl/create_integrated.html')
+
+@method_decorator(login_required(login_url='login'), name='dispatch')
+class CreateToeflIndependentView(View):
+    next_url = "create_independent"
+    correction = None
+
+    def dispatch(self, request, *args, **kwargs):
+        return super(CreateToeflIndependentView, self).dispatch(request, *args, **kwargs)
+
+    def get(self, request):
+        return render(request, 'toefl/create_independent.html')
+
+    def post(self, request):
+        form = ToeflWritingForm(request.POST, request.FILES)
+
+        if form.is_valid():
+            try:
+                question_type_data = QuestionTypeData.objects.get(exam_type=QuestionTypeData.EXAM_TYPE_TOEFL_TASK2,
+                                                                  exam_db_name=form.cleaned_data['exam_db_name'],
+                                                                  exam_db_number=form.cleaned_data['exam_db_number'])
+
+            except:
+                messages.error(request, "The specified exam is not supported! NEO 01-10 is supported.")
+                context = {
+                    'exam_db_name': form.cleaned_data['exam_db_name'],
+                    'exam_db_number': form.cleaned_data['exam_db_number'],
+                    'answer': form.cleaned_data['answer'],
+                }
+                return render(request, 'toefl/create_independent.html', context)
+
+            correction = Correction(user=request.user,
+                                    question_type_data=question_type_data,
+                                    answer=form.cleaned_data['answer'])
+            correction.save()
+
+            messages.success(request, 'Correction submitted successfully')
+        else:
+            messages.error(request, form_validation_error(form))
+        return render(request, 'toefl/create_independent.html')
 
 
 @login_required(login_url='login')

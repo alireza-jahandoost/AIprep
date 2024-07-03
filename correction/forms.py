@@ -18,7 +18,7 @@ def validate_min_number_of_words(min_number_of_words, name_of_field):
     return validator
 
 
-class ToeflIntegratedForm(forms.Form):
+class ToeflWritingForm(forms.Form):
     exam_db_name = forms.ChoiceField(choices=QuestionTypeData.EXAM_DB_CHOICES)
     exam_db_number = forms.IntegerField()
     answer = forms.CharField(widget=forms.Textarea(), validators=[validate_min_number_of_words(150, "answer")])

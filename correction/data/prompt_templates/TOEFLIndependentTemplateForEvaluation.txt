@@ -1,0 +1,6 @@
+You are given a piece of text and a conversation. Please determine whether the text is about the given conversation. Answer with "Yes" if it is about the conversation, and "No" if it is not.
+Text: 
+[MAIN TEXT]
+
+Conversation: 
+[READING]

@@ -4,16 +4,14 @@ import os
 import google.generativeai as genai
 from django.core.management import BaseCommand
 
-from correction.models import Correction
+from correction.models import Correction, QuestionTypeData
 
 
 class Command(BaseCommand):
     help = "Corrects corrections"
 
-    def make_prompt(self, prompt_name, args):
-        if prompt_name == "TOEFLIntegratedTemplate":
-            # assert all(k in args for k in ["READING", "LISTENING", "WRITTEN TEXT"]) == True
-
+    def make_prompt(self, correction):
+        if correction.question_type_data.exam_type == QuestionTypeData.EXAM_TYPE_TOEFL_TASK1:
             check_template = open("correction/data/prompt_templates/TOEFLIntegratedTemplateForEvaluation.txt")
             main_template = open("correction/data/prompt_templates/TOEFLIntegratedTemplate.txt")
 
@@ -24,12 +22,30 @@ class Command(BaseCommand):
             main_template.close()
 
             check_template_text = ((check_template_text
-                                    .replace("[READING]", args["READING"]))
-                                   .replace("[MAIN TEXT]", args["MAIN_TEXT"]))
+                                    .replace("[READING]", correction.question_type_data.data['reading']))
+                                   .replace("[MAIN TEXT]", correction.answer))
             main_template_text = (main_template_text
-                                  .replace("[LISTENING]", args["LISTENING"])
-                                  .replace("[READING]", args["READING"])
-                                  .replace("[MAIN TEXT]", args["MAIN_TEXT"]))
+                                  .replace("[LISTENING]", correction.question_type_data.data['listening'])
+                                  .replace("[READING]", correction.question_type_data.data['reading'])
+                                  .replace("[MAIN TEXT]", correction.answer))
+
+            return check_template_text, main_template_text
+        elif correction.question_type_data.exam_type == QuestionTypeData.EXAM_TYPE_TOEFL_TASK2:
+            check_template = open("correction/data/prompt_templates/TOEFLIndependentTemplateForEvaluation.txt")
+            main_template = open("correction/data/prompt_templates/TOEFLIndependentTemplate.txt")
+
+            check_template_text = check_template.read()
+            main_template_text = main_template.read()
+
+            check_template.close()
+            main_template.close()
+
+            check_template_text = ((check_template_text
+                                    .replace("[READING]", correction.question_type_data.data['reading']))
+                                   .replace("[MAIN TEXT]", correction.answer))
+            main_template_text = (main_template_text
+                                  .replace("[READING]", correction.question_type_data.data['reading'])
+                                  .replace("[MAIN TEXT]", correction.answer))
 
             return check_template_text, main_template_text
         else:
@@ -38,6 +54,7 @@ class Command(BaseCommand):
     def call_api(self, prompt):
         model = genai.GenerativeModel('gemini-1.5-flash')
         return model.generate_content(prompt).text
+
 
     def handle(self, *args, **options):
         genai.configure(api_key=os.environ['GENAI_API_KEY'])
@@ -55,21 +72,17 @@ class Command(BaseCommand):
             current_correction = not_corrected_corrections[iter]
             iter = iter + 1
 
-            check_prompt, main_prompt = self.make_prompt("TOEFLIntegratedTemplate", {
-                "MAIN_TEXT": current_correction.answer,
-                "READING": current_correction.question_type_data.data['reading'],
-                "LISTENING": current_correction.question_type_data.data['listening'],
-            })
+            check_prompt, main_prompt = self.make_prompt(current_correction)
 
             check_output = self.call_api(check_prompt)
 
             if "yes" in check_output.lower():
                 correction = self.call_api(main_prompt)
                 current_correction.correction = correction
-                current_correction.status = Correction.STATUS_CHOICES[2][0]
+                current_correction.status = Correction.STATUS_CORRECTED
             else:
                 current_correction.correction = check_output
-                current_correction.status = Correction.STATUS_CHOICES[1][0]
+                current_correction.status = Correction.STATUS_INVALID
             current_correction.save()
             request_limit -= 2
 

@@ -55,7 +55,10 @@
                 </span>
                 <div class="multi-level collapse " role="list" id="toefl-writing" aria-expanded="false">
                     <ul class="flex-column nav">
-                        <li class="nav-item "><a class="nav-link" href="/correction/add_correction/toefl/create_integrated"><span>Integrated</span></a></li>
+                        <li class="nav-item "><a class="nav-link" href="{% url 'create_toefl_integrated' %}"><span>Integrated</span></a></li>
+                    </ul>
+                    <ul class="flex-column nav">
+                        <li class="nav-item "><a class="nav-link" href="{% url 'create_toefl_independent' %}"><span>Independent</span></a></li>
                     </ul>
                 </div>
             </li>

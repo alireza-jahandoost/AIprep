@@ -5,29 +5,35 @@ from jsonfield import JSONField
 
 # Create your models here.
 
-class QuestionType(models.Model):
-    name = models.CharField(max_length=100)
-
-
 class QuestionTypeData(models.Model):
-    TYPE_TPO = 1
-    TYPE_NEO = 2
-    TYPE_CHOICES = [
-        (TYPE_TPO, _("TPO")),
-        (TYPE_NEO, _("NEO")),
+    EXAM_DB_TPO = 1
+    EXAM_DB_NEO = 2
+    EXAM_DB_CHOICES = [
+        (EXAM_DB_TPO, _("TPO")),
+        (EXAM_DB_NEO, _("NEO")),
     ]
 
-    question_type = models.ForeignKey(QuestionType, on_delete=models.CASCADE)
-    type_name = models.PositiveSmallIntegerField(choices=TYPE_CHOICES)
-    type_number = models.PositiveIntegerField()
+    EXAM_TYPE_TOEFL_TASK1 = 1
+    EXAM_TYPE_TOEFL_TASK2 = 2
+    EXAM_TYPE_CHOICES = [
+        (EXAM_TYPE_TOEFL_TASK1, 'Toefl task1'),
+        (EXAM_TYPE_TOEFL_TASK2, 'Toefl task2'),
+    ]
+
+    exam_type = models.PositiveSmallIntegerField(choices=EXAM_TYPE_CHOICES)
+    exam_db_name = models.PositiveSmallIntegerField(choices=EXAM_DB_CHOICES)
+    exam_db_number = models.PositiveIntegerField()
     data = JSONField()
 
 
 class Correction(models.Model):
+    STATUS_PENDING = 0
+    STATUS_INVALID = 1
+    STATUS_CORRECTED = 2
     STATUS_CHOICES = [
-        (0, _("Pending")),
-        (1, _("Invalid")),
-        (2, _("Corrected")),
+        (STATUS_PENDING, _("Pending")),
+        (STATUS_INVALID, _("Invalid")),
+        (STATUS_CORRECTED, _("Corrected")),
     ]
     question_type_data = models.ForeignKey(QuestionTypeData, on_delete=models.CASCADE, null=True, blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)

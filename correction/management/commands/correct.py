@@ -42,7 +42,7 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         genai.configure(api_key=os.environ['GENAI_API_KEY'])
         request_limit = int(os.environ['MAX_NUMBER_OF_API_REQUESTS'])
-        not_corrected_corrections = list(Correction.objects.filter(status=Correction.STATUS_CHOICES[0][0]).order_by(
+        not_corrected_corrections = list(Correction.objects.filter(status=Correction.STATUS_PENDING).order_by(
             'created_at'))
 
         if len(not_corrected_corrections) == 0:

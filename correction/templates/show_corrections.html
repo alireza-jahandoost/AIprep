@@ -33,13 +33,13 @@
                           <tr>
                               <td class="border-0"><a href="#" class="text-primary font-weight-bold">{{ forloop.counter }}</a> </td>
                               <td class="border-0 font-weight-bold">
-                                  {{ correction.question_type_data.question_type.name }}
+                                  {{ correction.question_type_data.get_exam_type_display }}
                               </td>
                               <td class="border-0">
-                                  {{ correction.question_type_data.get_type_name_display }}
+                                  {{ correction.question_type_data.get_exam_db_display }}
                               </td>
                               <td class="border-0">
-                                  {{ correction.question_type_data.type_number }}
+                                  {{ correction.question_type_data.exam_db_number }}
                               </td>
                               <td class="border-0">
                                   {% if correction.get_status_display == "Pending" %}

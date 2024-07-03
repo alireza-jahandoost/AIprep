@@ -31,14 +31,15 @@ class CreateToeflIntegratedView(View):
 
         if form.is_valid():
             try:
-                question_type_data = QuestionTypeData.objects.get(type_number=form.cleaned_data['question_type_number'],
-                                                                  type_name=form.cleaned_data['question_type_name'])
+                question_type_data = QuestionTypeData.objects.get(exam_type=QuestionTypeData.EXAM_TYPE_TOEFL_TASK1,
+                                                                  exam_db_name=form.cleaned_data['exam_db_name'],
+                                                                  exam_db_number=form.cleaned_data['exam_db_number'])
 
             except:
                 messages.error(request, "The specified exam is not supported! TPO 40-75 and NEO 01-40 are supported.")
                 context = {
-                    'question_type_name': form.cleaned_data['question_type_name'],
-                    'question_type_number': form.cleaned_data['question_type_number'],
+                    'exam_db_name': form.cleaned_data['exam_db_name'],
+                    'exam_db_number': form.cleaned_data['exam_db_number'],
                     'answer': form.cleaned_data['answer'],
                 }
                 return render(request, 'toefl/create_integrated.html', context)

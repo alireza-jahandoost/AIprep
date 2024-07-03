@@ -26,31 +26,31 @@ class Command(BaseCommand):
 
         # Same question type data
         correction1 = Correction.objects.create(
-            question_type_data=QuestionTypeData.objects.get(type_name=QuestionTypeData.TYPE_CHOICES[0][0],
-                                                            type_number=73),
+            question_type_data=QuestionTypeData.objects.get(exam_db_name=QuestionTypeData.EXAM_DB_TPO,
+                                                            exam_db_number=73),
             user=user,
             answer=toefl_integrated_tpo_73)
         correction2 = Correction.objects.create(
-            question_type_data=QuestionTypeData.objects.get(type_name=QuestionTypeData.TYPE_CHOICES[0][0],
-                                                            type_number=64),
+            question_type_data=QuestionTypeData.objects.get(exam_db_name=QuestionTypeData.EXAM_DB_TPO,
+                                                            exam_db_number=64),
             user=user,
             answer=toefl_integrated_tpo_64)
 
         # Different question type data
         correction3 = Correction.objects.create(
-            question_type_data=QuestionTypeData.objects.get(type_name=QuestionTypeData.TYPE_CHOICES[0][0],
-                                                            type_number=70),
+            question_type_data=QuestionTypeData.objects.get(exam_db_name=QuestionTypeData.EXAM_DB_TPO,
+                                                            exam_db_number=70),
             user=user,
             answer=toefl_integrated_tpo_73)
         correction4 = Correction.objects.create(
-            question_type_data=QuestionTypeData.objects.get(type_name=QuestionTypeData.TYPE_CHOICES[0][0],
-                                                            type_number=65),
+            question_type_data=QuestionTypeData.objects.get(exam_db_name=QuestionTypeData.EXAM_DB_TPO,
+                                                            exam_db_number=65),
             user=user,
             answer=toefl_integrated_tpo_64)
 
         # Wrong text
         correction5 = Correction.objects.create(
-            question_type_data=QuestionTypeData.objects.get(type_name=QuestionTypeData.TYPE_CHOICES[0][0],
-                                                            type_number=73),
+            question_type_data=QuestionTypeData.objects.get(exam_db_name=QuestionTypeData.EXAM_DB_TPO,
+                                                            exam_db_number=73),
             user=user,
             answer=dummy_text)

@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'app',  # Enable the inner app
     'customers',
     'correction',
+    'subscriptions',
     'markdownify.apps.MarkdownifyConfig',
     'django_crontab',
 ]

@@ -92,3 +92,9 @@ def verify(request, plan_id):
             return HttpResponse('Connection Error')
     else:
         return HttpResponse('Not ok')
+
+@login_required(login_url='login')
+def transactions(request):
+    transactions = Payment.objects.filter(user=request.user).all().order_by('-created_at')
+    # breakpoint()
+    return render(request, 'transactions.html', {'transactions': transactions})

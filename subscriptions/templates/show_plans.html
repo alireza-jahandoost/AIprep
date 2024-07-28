@@ -1,0 +1,75 @@
+{% extends "layouts/base.html" %}
+{% load static %}
+
+{% block title %} Settings {% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+    <main class="content">
+
+        {% include 'includes/navigation.html' %}
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="card card-body bg-white border-light shadow-sm mb-4 min-vh-100">
+                        <div class="table-responsive">
+                  <table class="table table-centered table-nowrap mb-0 rounded text-center">
+                      <thead class="thead-light">
+                          <tr>
+                              <th class="border-0">#</th>
+                              <th class="border-0">Plan Name</th>
+                              <th class="border-0">Plan Duration (days)</th>
+                              <th class="border-0">Correction Type</th>
+                              <th class="border-0">Available Daily Corrections</th>
+                              <th class="border-0">Plan Price</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <!-- Item -->
+                          {% for plan in plans %}
+                          <tr>
+                              <td class="border-0"><a href="#" class="text-primary font-weight-bold">{{ forloop.counter }}</a> </td>
+                              <td class="border-0 font-weight-bold">
+                                  {{ plan.plan_name }}
+                              </td>
+                              <td class="border-0">
+                                  {{ plan.number_of_days }}
+                              </td>
+                              <td class="border-0">
+                                  {{ plan.get_correction_type_display }}
+                              </td>
+                              <td class="border-0">
+                                  {{ plan.available_daily_corrections }}
+                              </td>
+                              <td class="border-0">
+                                  {{ plan.price }}
+                              </td>
+                              <td class="border-0">
+                                  {% if plan.price > 0 %}
+                                  <a href="{% url 'subscription_order' plan.id %}">
+                                      <span class="btn btn-success">Order</span>
+                                  </a>
+                                  {% endif %}
+                              </td>
+                          </tr>
+                          <!-- End of Item -->
+                          {% endfor %}
+
+                      </tbody>
+                  </table>
+              </div>
+                    </div>
+                </div>
+            </div>
+
+        {% include 'includes/footer.html' %}
+
+    </main>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}

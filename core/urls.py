@@ -11,6 +11,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),  # Django admin route
     path('customers/', include("customers.urls")),  # Django customers route
     path('correction/', include('correction.urls')),
+    path('subscriptions/', include('subscriptions.urls')),
     path("", include("app.urls")),  # UI Kits Html files
     path("", include("authentication.urls")),  # Auth routes - login / register
 ]

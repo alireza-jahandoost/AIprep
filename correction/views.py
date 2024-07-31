@@ -2,14 +2,16 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ValidationError
 from django.db.models import Q
-from django.http import HttpResponseNotFound
+from django.http import HttpResponseNotFound, HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
 from django.utils.decorators import method_decorator
 from django.views import View
 
 from correction.forms import form_validation_error, ToeflWritingForm
+from correction.helper_functions import get_number_of_today_corrections
 from correction.models import Correction, QuestionTypeData
+from subscriptions.helper_functions import get_current_plan_of_user
 
 
 # import pdb
@@ -27,6 +29,10 @@ class CreateToeflIntegratedView(View):
         return render(request, 'toefl/create_integrated.html', {'segment': 'toefl_writing_integrated'})
 
     def post(self, request):
+        plan = get_current_plan_of_user(request.user)
+        if get_number_of_today_corrections(request.user) >= plan.available_daily_corrections:
+            return HttpResponse("Forbidden", status=403)
+
         form = ToeflWritingForm(request.POST, request.FILES)
 
         if form.is_valid():
@@ -66,6 +72,10 @@ class CreateToeflIndependentView(View):
         return render(request, 'toefl/create_independent.html', {'segment': 'toefl_writing_independent'})
 
     def post(self, request):
+        plan = get_current_plan_of_user(request.user)
+        if get_number_of_today_corrections(request.user) >= plan.available_daily_corrections:
+            return HttpResponse("Forbidden", status=403)
+        
         form = ToeflWritingForm(request.POST, request.FILES)
 
         if form.is_valid():

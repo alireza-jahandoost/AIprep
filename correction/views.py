@@ -26,7 +26,10 @@ class CreateToeflIntegratedView(View):
         return super(CreateToeflIntegratedView, self).dispatch(request, *args, **kwargs)
 
     def get(self, request):
-        return render(request, 'toefl/create_integrated.html', {'segment': 'toefl_writing_integrated'})
+        plan = get_current_plan_of_user(request.user)
+        rem_corrections = max(0, plan.available_daily_corrections - get_number_of_today_corrections(request.user))
+        return render(request, 'toefl/create_integrated.html',
+                      {'segment': 'toefl_writing_integrated', 'rem_corrections': rem_corrections})
 
     def post(self, request):
         plan = get_current_plan_of_user(request.user)
@@ -58,7 +61,7 @@ class CreateToeflIntegratedView(View):
             messages.success(request, 'Correction submitted successfully')
         else:
             messages.error(request, form_validation_error(form))
-        return render(request, 'toefl/create_integrated.html')
+        return redirect(reverse('create_toefl_integrated'))
 
 @method_decorator(login_required(login_url='login'), name='dispatch')
 class CreateToeflIndependentView(View):
@@ -69,13 +72,16 @@ class CreateToeflIndependentView(View):
         return super(CreateToeflIndependentView, self).dispatch(request, *args, **kwargs)
 
     def get(self, request):
-        return render(request, 'toefl/create_independent.html', {'segment': 'toefl_writing_independent'})
+        plan = get_current_plan_of_user(request.user)
+        rem_corrections = max(0, plan.available_daily_corrections - get_number_of_today_corrections(request.user))
+        return render(request, 'toefl/create_independent.html',
+                      {'segment': 'toefl_writing_independent', 'rem_corrections': rem_corrections})
 
     def post(self, request):
         plan = get_current_plan_of_user(request.user)
         if get_number_of_today_corrections(request.user) >= plan.available_daily_corrections:
             return HttpResponse("Forbidden", status=403)
-        
+
         form = ToeflWritingForm(request.POST, request.FILES)
 
         if form.is_valid():
@@ -101,7 +107,7 @@ class CreateToeflIndependentView(View):
             messages.success(request, 'Correction submitted successfully')
         else:
             messages.error(request, form_validation_error(form))
-        return render(request, 'toefl/create_independent.html')
+        return redirect(reverse('create_toefl_independent'))
 
 
 @login_required(login_url='login')

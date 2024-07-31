@@ -43,7 +43,10 @@
                                   </div>
                         </div>
                         <div class="mt-3">
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="submit" class="btn btn-primary"
+                            {% if rem_corrections == 0 %}disabled {% endif %}>
+                                Submit (remaining corrections: {{ rem_corrections }})
+                            </button>
                         </div>
                     </div>
                 </div>

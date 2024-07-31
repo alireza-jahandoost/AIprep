@@ -49,8 +49,9 @@
                               </td>
                               <td class="border-0">
                                   {% if plan.price > 0 %}
-                                  <a href="{% url 'subscription_order' plan.id %}">
-                                      <span class="btn btn-success">Order</span>
+                                  <a href="{% if can_user_order %}{% url 'subscription_order' plan.id %}{% else %}#{% endif %}"
+                                        {% if not can_user_order %}onclick="alert('شما در حال حاضر اشتراک فعال دارید')"{% endif %}>
+                                      <span class="btn btn-success {% if not can_user_order %}disabled{% endif %}">Order</span>
                                   </a>
                                   {% endif %}
                               </td>

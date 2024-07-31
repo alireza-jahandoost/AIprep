@@ -2,13 +2,14 @@ from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render, get_object_or_404
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseServerError
 import requests
 import json
 
 from django.urls import reverse
 from django.utils.decorators import method_decorator
 
+from subscriptions.helper_functions import get_current_plan_of_user
 from subscriptions.models import Plan, Payment
 
 #? sandbox merchant
@@ -30,12 +31,21 @@ phone = 'YOUR_PHONE_NUMBER'  # Optional
 @login_required(login_url='login')
 def show_plans(request):
     plans = Plan.objects.all()
-    return render(request, 'show_plans.html', {'plans': plans, 'segment': 'plans'})
+    plan_of_the_user = get_current_plan_of_user(request.user)
+    return render(request, 'show_plans.html',
+                  {
+                      'plans': plans,
+                      'segment': 'plans',
+                      'can_user_order': plan_of_the_user.plan_name.lower() is 'normal'})
 
 
 @login_required(login_url='login')
 def order(request, plan_id):
     plan = get_object_or_404(Plan, pk=plan_id)
+
+    plan_of_the_user = get_current_plan_of_user(request.user)
+    if plan_of_the_user.plan_name.lower() is not 'normal':
+        return HttpResponse("Forbidden", status=403)
 
     data = {
         "MerchantID": settings.MERCHANT,

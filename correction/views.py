@@ -24,7 +24,7 @@ class CreateToeflIntegratedView(View):
         return super(CreateToeflIntegratedView, self).dispatch(request, *args, **kwargs)
 
     def get(self, request):
-        return render(request, 'toefl/create_integrated.html')
+        return render(request, 'toefl/create_integrated.html', {'segment': 'toefl_writing_integrated'})
 
     def post(self, request):
         form = ToeflWritingForm(request.POST, request.FILES)
@@ -63,7 +63,7 @@ class CreateToeflIndependentView(View):
         return super(CreateToeflIndependentView, self).dispatch(request, *args, **kwargs)
 
     def get(self, request):
-        return render(request, 'toefl/create_independent.html')
+        return render(request, 'toefl/create_independent.html', {'segment': 'toefl_writing_independent'})
 
     def post(self, request):
         form = ToeflWritingForm(request.POST, request.FILES)
@@ -97,10 +97,10 @@ class CreateToeflIndependentView(View):
 @login_required(login_url='login')
 def ShowCorrectionsView(request):
     corrections = Correction.objects.filter(user=request.user)
-    return render(request, 'show_corrections.html', {'corrections': corrections})
+    return render(request, 'show_corrections.html', {'corrections': corrections, 'segment': 'corrections'})
 @login_required(login_url='login')
 def ShowCorrectionView(request, correction_id):
     correction = get_object_or_404(Correction, pk=correction_id)
     if correction.correction is None or correction.get_status_display() == "Invalid":
         return render(request, '../../core/templates/page-404.html')
-    return render(request, 'show_correction.html', {'correction': correction})
+    return render(request, 'show_correction.html', {'correction': correction, 'segment': 'corrections'})

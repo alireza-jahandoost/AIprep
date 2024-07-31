@@ -27,7 +27,7 @@ phone = 'YOUR_PHONE_NUMBER'  # Optional
 @login_required(login_url='login')
 def show_plans(request):
     plans = Plan.objects.all()
-    return render(request, 'show_plans.html', {'plans': plans})
+    return render(request, 'show_plans.html', {'plans': plans, 'segment': 'plans'})
 
 @login_required(login_url='login')
 def order(request, plan_id):

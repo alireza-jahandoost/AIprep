@@ -1,4 +1,5 @@
 from django.conf import settings
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render, get_object_or_404
 from django.http import HttpResponse
@@ -21,6 +22,8 @@ ZP_API_VERIFY = f"https://{sandbox}.zarinpal.com/pg/rest/WebGate/PaymentVerifica
 ZP_API_STARTPAY = f"https://{sandbox}.zarinpal.com/pg/StartPay/"
 
 phone = 'YOUR_PHONE_NUMBER'  # Optional
+
+
 # Important: need to edit for real server.
 
 
@@ -28,6 +31,7 @@ phone = 'YOUR_PHONE_NUMBER'  # Optional
 def show_plans(request):
     plans = Plan.objects.all()
     return render(request, 'show_plans.html', {'plans': plans, 'segment': 'plans'})
+
 
 @login_required(login_url='login')
 def order(request, plan_id):
@@ -51,12 +55,15 @@ def order(request, plan_id):
             if response_json['Status'] == 100:
                 return redirect(ZP_API_STARTPAY + authority)
             else:
-                return HttpResponse('Error')
-        return HttpResponse('response failed')
+                messages.error(request, 'خطایی رخ داده است (Repeated Request)')
+        else:
+            messages.error(request, 'خطایی رخ داده است (Response Failed)')
     except requests.exceptions.Timeout:
-        return HttpResponse('Timeout Error')
+        messages.error(request, 'خطایی رخ داده است (Timeout Error)')
     except requests.exceptions.ConnectionError:
-        return HttpResponse('Connection Error')
+        messages.error(request, 'خطایی رخ داده است (Connection Error)')
+    return redirect(reverse('subscription_transactions'))
+
 
 @login_required(login_url='login')
 def verify(request, plan_id):
@@ -81,17 +88,21 @@ def verify(request, plan_id):
                 if response_json['Status'] == 100:
                     Payment.objects.create(plan=plan,
                                            user=request.user,
-                                           ref_id=response_json['RefID'],)
-                    return HttpResponse(f'successful , RefID: {reference_id}')
+                                           ref_id=response_json['RefID'], )
+                    messages.success(request, "تراکنش با موفقیت انجام شد. ممنون که در این راه، مارا انتخاب کرده اید.")
                 else:
-                    return HttpResponse('Error')
-            return HttpResponse('response failed')
+                    messages.error(request, 'خطایی رخ داده است (Repeated Request)')
+            else:
+                messages.error(request, 'خطایی رخ داده است (Response Failed)')
         except requests.exceptions.Timeout:
-            return HttpResponse('Timeout Error')
+            messages.error(request, 'خطایی رخ داده است (Timeout Error)')
         except requests.exceptions.ConnectionError:
-            return HttpResponse('Connection Error')
+            messages.error(request, 'خطایی رخ داده است (Connection Error)')
     else:
-        return HttpResponse('Not ok')
+        messages.error(request, 'تراکنش ناموفق بود')
+
+    return redirect(reverse('subscription_transactions'))
+
 
 @login_required(login_url='login')
 def transactions(request):

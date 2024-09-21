@@ -55,6 +55,9 @@ $ # Create tables
 $ python manage.py makemigrations
 $ python manage.py migrate
 $
+$ # Make staticfiles dir
+$ python manage.py collectstatic
+$
 $ # Start the application (development mode)
 $ python manage.py runserver # default port 8000
 $

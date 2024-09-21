@@ -58,6 +58,15 @@ $
 $ # Make staticfiles dir
 $ python manage.py collectstatic
 $
+$ # Make .env file and add info about 
+$ # DEBUG, MERCHANT of zarinpal, GENAI_API_KEY, MAX_NUMBER_OF_API_REQUESTS, SERVER, and SECRET
+$ vim .env
+$
+$ # Make data
+$ python manage.py initial_correction_data
+$ python manage.py initial_correction_test_data
+$ python manage.py initial_subscription_data
+$
 $ # Start the application (development mode)
 $ python manage.py runserver # default port 8000
 $

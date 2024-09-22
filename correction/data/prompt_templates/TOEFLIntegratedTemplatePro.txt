@@ -1,0 +1,67 @@
+1. **Task:** I need you to grade my TOEFL writing practice test, which should be a 250-350-word essay consisting of 4 paragraphs. The essay should be written in a formal tone, similar to what you'd find in first-year college composition classes.
+
+2. **Format:**
+    * **Paragraph 1:** Explain the most important points in the reading and the lecture, highlighting their relationship.  Aim for 100 words.
+    * **Paragraph 2:** Compare and contrast the first important point in the reading passage with the first crucial point in the lecture, focusing on how they contradict each other. Aim for 100 words.
+    * **Paragraph 3:** Compare and contrast the second important point in the reading passage with the second crucial point in the lecture, focusing on how they contradict each other. Aim for 100 words.
+    * **Paragraph 4:** Compare and contrast the third important point in the reading passage with the third crucial point in the lecture, focusing on how they contradict each other. Aim for 100 words.
+
+3. **Input:**
+    * **Reading Passage:** [READING]
+    * **Lecture Transcript:** [LISTENING]
+
+4. **Grading Criteria:** Grade my essay based on how well it addresses the prompt: "How does the information in the lecture contradict the information in the reading passage?"
+
+5. **Rubric:** On a scale of 0 to 30 points, grade my TOEFL writing practice test according to the rubric below, which represents a score of 5.0/5.0 or 30/30 pts. Be sure to provide a score for each category:
+
+    **Rubric (5.0/5.0)**
+    * **Content:** The response accurately and coherently presents the most important points from the reading and the lecture, and effectively demonstrates how the information from the lecture contradicts the information from the reading.
+    * **Organization:** The response is well-organized, with clear topic sentences and smooth transitions between paragraphs and ideas.
+    * **Language:** The response uses a variety of sentence structures and vocabulary effectively. Grammar and mechanics are mostly error-free, with only minor errors that do not hinder comprehension.
+
+    **Tense Usage:** Usually, two verb tenses are used in this task:
+    * a) Simple present: when talking about the author's and lecturer's opinion and reasons for their opinions and when discussing contemporary issues.
+    * b) Simple past: when the author or lecturer is discussing past events.
+    * Note: sometimes conditional sentences or other tenses may be necessary. However, most of the time, these two tenses are enough.
+
+    **Paraphrasing:** The information from the reading should be paraphrased, but the information from the lecture can remain unchanged.
+
+    **Transitional Words:** The prompt recommends using at least two transitional words or phrases per paragraph to enhance cohesion.
+
+    **Formatting and Spelling:** The prompt encourages keeping formatting and spelling errors to a minimum (less than 8). 
+
+    **Content Balance:**  Approximately two-thirds of each paragraph should be dedicated to the listening information and one-third to the reading information.
+
+    **No Additional Information:**  No information should be added that is not present in the reading passage or lecture transcript. 
+
+6. **Essay:** [MAIN TEXT]
+
+7. **Feedback:**
+    * **Overall Score:** [Your predicted score]/30
+    * **Content:**
+        * **Strengths:** [Overall strengths of the content in your essay]
+        * **Weaknesses:** [Overall weaknesses of the content in your essay]
+    * **Organization:**
+        * **Strengths:** [Organization strengths of your essay]
+        * **Weaknesses:** [Organization weaknesses of your essay]
+    * **Language:**
+        * **Strengths:** [Language strengths of your essay]
+        * **Weaknesses:** [Language weaknesses of your essay]
+    * **Specific Feedback:**
+        * **Paragraph 1:**
+            * **Strengths:** [Strengths of the first paragraph]
+            * **Weaknesses:** [Weaknesses of the first paragraph]
+        * **Paragraph 2:**
+            * **Strengths:** [Strengths of the second paragraph]
+            * **Weaknesses:** [Weaknesses of the second paragraph]
+        * **Paragraph 3:**
+            * **Strengths:** [Strengths of the third paragraph]
+            * **Weaknesses:** [Weaknesses of the third paragraph]
+        * **Paragraph 4:**
+            * **Strengths:** [Strengths of the fourth paragraph]
+            * **Weaknesses:** [Weaknesses of the fourth paragraph]
+    * **Grammar and Mechanics:**
+        * **Common Errors:** [Common errors with their explanation and examples from your text]
+        * **Areas to Review:** [Areas to improve grammar and mechanics in your writing]
+    * **Revised Essay (30/30 Points):** [Insert your revised essay here.]
+    * **Explanation of Changes:** [Explanation of the changes made in the revised essay]

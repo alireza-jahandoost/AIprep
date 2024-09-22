@@ -1,20 +1,28 @@
 import time
 import os
+from dbm import error
 
 import google.generativeai as genai
 from django.core.management import BaseCommand
 
 from correction.models import Correction, QuestionTypeData
+from subscriptions.helper_functions import get_current_plan_of_user
+from subscriptions.models import Plan
 
 
 class Command(BaseCommand):
     help = "Corrects corrections"
 
     def make_prompt(self, correction):
+        user_plan = get_current_plan_of_user(correction.user)
         if correction.question_type_data.exam_type == QuestionTypeData.EXAM_TYPE_TOEFL_TASK1:
             check_template = open("correction/data/prompt_templates/TOEFLIntegratedTemplateForEvaluation.txt")
-            main_template = open("correction/data/prompt_templates/TOEFLIntegratedTemplate.txt")
-
+            if user_plan.correction_type == Plan.CORRECTION_TYPE_NORMAL:
+                main_template = open("correction/data/prompt_templates/TOEFLIntegratedTemplate.txt")
+            elif user_plan.correction_type == Plan.CORRECTION_TYPE_PRO:
+                main_template = open("correction/data/prompt_templates/TOEFLIntegratedTemplatePro.txt")
+            else:
+                raise "Not supported correction type (TOEFL TASK 1)"
             check_template_text = check_template.read()
             main_template_text = main_template.read()
 
@@ -32,8 +40,12 @@ class Command(BaseCommand):
             return check_template_text, main_template_text
         elif correction.question_type_data.exam_type == QuestionTypeData.EXAM_TYPE_TOEFL_TASK2:
             check_template = open("correction/data/prompt_templates/TOEFLIndependentTemplateForEvaluation.txt")
-            main_template = open("correction/data/prompt_templates/TOEFLIndependentTemplate.txt")
-
+            if user_plan.correction_type == Plan.CORRECTION_TYPE_NORMAL:
+                main_template = open("correction/data/prompt_templates/TOEFLIndependentTemplate.txt")
+            elif user_plan.correction_type == Plan.CORRECTION_TYPE_PRO:
+                main_template = open("correction/data/prompt_templates/TOEFLIndependentTemplatePro.txt")
+            else:
+                raise "Not supported correction type (TOEFL TASK 2)"
             check_template_text = check_template.read()
             main_template_text = main_template.read()
 

@@ -36,7 +36,7 @@ def show_plans(request):
                   {
                       'plans': plans,
                       'segment': 'plans',
-                      'can_user_order': plan_of_the_user.plan_name.lower() is 'normal'})
+                      'can_user_order': plan_of_the_user.plan_name.lower() == 'normal'})
 
 
 @login_required(login_url='login')
@@ -44,7 +44,7 @@ def order(request, plan_id):
     plan = get_object_or_404(Plan, pk=plan_id)
 
     plan_of_the_user = get_current_plan_of_user(request.user)
-    if plan_of_the_user.plan_name.lower() is not 'normal':
+    if plan_of_the_user.plan_name.lower() != 'normal':
         return HttpResponse("Forbidden", status=403)
 
     data = {

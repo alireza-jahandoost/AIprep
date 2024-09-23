@@ -1,54 +1,109 @@
-**Context:**
+### TOEFL Writing Task: **Reading Response with Personal Insights**
 
-* **Reading Passage:** [READING]
+#### **Context:**
 
-**Writing Prompt:**
+- **Reading Passage:**  
+  [READING]
 
-* **Task:** Write a paragraph response to the reading passage that expresses and supports your opinion on the topic discussed. **Do not repeat the information presented by the professor or students in the passage.  Instead, add to the discussion by providing your own insights and perspectives.**
-* **Tone:** Use a formal tone appropriate for a first-year college composition class.
-* **Focus:** Demonstrate your ability to contribute effectively to an online discussion.
+#### **Writing Prompt:**
 
-**Grading Rubric:**
+- **Task:**  
+  Write a paragraph response to the reading passage that expresses and supports your opinion on the topic discussed. **Do not repeat the information presented by the professor or students in the passage. Instead, add to the discussion by providing your own insights and perspectives.**
 
-* **Score:** Please grade my essay on a scale of 0 to 30 points, using the following rubric:
-    * **Relevance and Clarity (5 points):** How well does my response contribute to the discussion and clearly express my opinion?
-    * **Explanation and Detail (10 points):** How effectively do I elaborate on my points with explanations, examples, and details?
-    * **Language Proficiency (5 points):** How effectively do I use a variety of sentence structures, precise vocabulary, and idiomatic language?
-    * **Grammar and Mechanics (10 points):** How few errors in grammar, punctuation, and spelling are present?
+- **Tone:**  
+  Use a formal tone appropriate for a first-year college composition class.
 
-**My Practice Test:**
+- **Focus:**  
+  Demonstrate your ability to contribute effectively to an academic online discussion.
 
-* **Essay:** [MAIN TEXT]
+---
 
-**Feedback:**
+### **Grading Rubric:**
 
-* **Detailed Analysis:** Please provide a line-by-line explanation of any grammar, sentence structure, mechanics, and punctuation corrections needed. Explain the reasoning behind each correction.
-* **Grammar Review:** Identify any grammar topics I should focus on reviewing based on the errors I made.
-* **Revised Essay:** Provide a revised version of my essay that you believe would score 30/30 points according to the provided rubric.  **In your revision, ensure the essay: **
-    * **Does not repeat information from the reading passage.**
-    * **Adds to the discussion by providing new perspectives or insights.**
-    * **Uses a variety of verb tenses, including simple present, simple past, and present perfect.** 
-    * **Has less than 5 formatting or spelling errors.**
-    * **Includes at least one transitional word or phrase.**
-    * **Incorporates personal experiences, details, etc., to enhance the essay.**
+Please grade my essay on a scale of 0 to 30 points, using the following criteria:
 
-**Your output should be in the following format:**
+1. **Relevance and Clarity (5 points):**  
+   How well does my response contribute to the discussion and clearly express my opinion? Does my response avoid simply repeating points from the reading?
 
-**Here's a detailed analysis of your essay, addressing the areas mentioned in the rubric:**
+2. **Explanation and Detail (10 points):**  
+   How effectively do I elaborate on my points with explanations, examples, and personal insights?
 
-* **Score:** [predicted score]/30
-* **Relevance and Clarity:**
-    * **Strengths:** [strengths in relevance and clarity]
-    * **Areas for Improvement:** [areas for improvement in relevance and clarity]
-* **Explanation and Detail:**
-    * **Strengths:** [strengths in explanation and detail]
-    * **Areas for Improvement:** [areas for improvement in explanation and detail]
-* **Language Proficiency:**
-    * **Strengths:** [strengths in language proficiency]
-    * **Areas for Improvement:** [areas for improvement in language proficiency]
-* **Grammar and Mechanics:**
-    * **Strengths:** [strengths in grammar and mechanics]
-    * **Areas for Improvement:** [areas for improvement in grammar and mechanics]
-* **Grammar Review:** [grammar review]
-* **Revised Essay:** [revised essay]
-* **Explanation of Revisions:** [explanation of revisions]
+3. **Language Proficiency (5 points):**  
+   How effectively do I use a variety of sentence structures, precise vocabulary, and idiomatic language to communicate my thoughts clearly?
+
+4. **Grammar and Mechanics (10 points):**  
+   How few errors in grammar, punctuation, and spelling are present? Are errors minor and do they avoid impeding comprehension?
+
+---
+
+### **My Practice Test:**
+
+- **Essay:**  
+  [MAIN TEXT]
+
+---
+
+### **Feedback Requested:**
+
+1. **Detailed Analysis:**  
+   Please provide a line-by-line explanation of any grammar, sentence structure, mechanics, and punctuation corrections needed. Explain the reasoning behind each correction to help improve my understanding.
+
+2. **Grammar Review:**  
+   Identify any grammar topics I should focus on reviewing based on the errors I made. Provide examples to illustrate the issues.
+
+3. **Revised Essay:**  
+   Provide a revised version of my essay that would likely score 30/30 points according to the rubric. Ensure the revised essay:
+   - Does not repeat information from the reading passage.
+   - Adds to the discussion by providing new perspectives or insights.
+   - Uses a variety of verb tenses, including simple present, simple past, and present perfect.
+   - Contains less than 5 formatting or spelling errors.
+   - Includes at least one transitional word or phrase.
+   - Incorporates personal experiences, details, or examples to strengthen the argument.
+
+---
+
+### **LLM-Specific Guidelines:**
+
+To ensure feedback is clear and optimal:
+
+- **Prevent overly brief answers:**  
+  Responses should fully address each part of the rubric, providing meaningful feedback on each area while avoiding shallow or incomplete analysis.
+  
+- **Prevent overly long answers:**  
+  Stay concise and focused, adhering to the 250-350 word range. Do not include redundant explanations or excessive details unrelated to the core analysis.
+
+---
+
+### **Output Format:**
+
+## **Overall Score:**  
+   [predicted score] / 30
+
+---
+
+## **Relevance and Clarity:**
+    - **Strengths:** [Highlight strong aspects related to relevance and clarity]
+    - **Areas for Improvement:** [Identify areas where clarity or relevance could be improved]
+
+## **Explanation and Detail:**
+    - **Strengths:** [Highlight strengths in how well you explained or elaborated on your points]
+    - **Areas for Improvement:** [Identify missing details, examples, or areas where elaboration could enhance the essay]
+
+## **Language Proficiency:**
+    - **Strengths:** [Highlight effective use of varied sentence structures and vocabulary]
+    - **Areas for Improvement:** [Mention any recurring issues with word choice, sentence complexity, or idiomatic usage]
+
+## **Grammar and Mechanics:**
+    - **Strengths:** [Highlight areas with minimal errors and clear mechanics]
+    - **Areas for Improvement:** [Note specific grammar or punctuation issues that need attention]
+
+## **Grammar Review:**  
+   [List common errors and provide grammar rules or explanations to address them. Suggest specific grammar topics or exercises to focus on.]
+
+## **Revised Essay (30/30 Points):**  
+   [Provide the revised essay based on your corrections.]
+
+## **Explanation of Revisions:**  
+   [Explain what changes you made in the revised version and how they improve clarity, relevance, detail, and grammar.]
+
+---

@@ -16,7 +16,20 @@
             <div class="row">
                 <div class="col-12">
                     <div class="card card-body bg-white border-light shadow-sm mb-4 min-vh-100" style="text-align: justify">
-                        {{ correction.correction|render_markdown }}
+                        <div>
+                            <h2>Written answer:</h2>
+                            <p>{{ correction.answer }}</p>
+                        </div>
+                        <hr>
+                        {% if correction.correction == "" %}
+                        <p>Not corrected yet</p>
+                        {% elif correction.get_status_display == "Invalid" %}
+                        <p>Unfortunately, the answer is not about the selected question.</p>
+                        {% else %}
+                        <div>
+                            {{ correction.correction|render_markdown }}
+                        </div>
+                        {% endif %}
                     </div>
                 </div>
             </div>

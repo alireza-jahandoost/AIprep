@@ -117,6 +117,6 @@ def ShowCorrectionsView(request):
 @login_required(login_url='login')
 def ShowCorrectionView(request, correction_id):
     correction = get_object_or_404(Correction, pk=correction_id)
-    if correction.correction is None or correction.get_status_display() == "Invalid":
-        return render(request, '../../core/templates/page-404.html')
+    # if correction.correction is None or correction.get_status_display() == "Invalid":
+    #     return render(request, '../../core/templates/page-404.html')
     return render(request, 'show_correction.html', {'correction': correction, 'segment': 'corrections'})

@@ -11,6 +11,8 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
 from django.forms.utils import ErrorList
 from django.http import HttpResponse
+from django.urls import reverse
+
 from .forms import LoginForm, SignUpForm
 
 
@@ -27,7 +29,7 @@ def login_view(request):
             user = authenticate(username=username, password=password)
             if user is not None:
                 login(request, user)
-                return redirect("/customers/profile/")
+                return redirect(reverse("dashboard"))
             else:
                 msg = 'Invalid credentials'
         else:

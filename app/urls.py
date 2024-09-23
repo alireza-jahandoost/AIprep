@@ -12,5 +12,5 @@ urlpatterns = [
     # path('', views.index, name='home'),
     # Matches any html file
     # re_path(r'^.*\.html', views.pages, name='pages'),
-    path("dashboard", views.dashboard, name="dashboard.html"),
+    path("dashboard", views.dashboard, name="dashboard"),
 ]

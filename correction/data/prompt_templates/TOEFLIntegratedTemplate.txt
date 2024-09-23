@@ -1,93 +1,91 @@
-1. I need you to grade my TOEFL writing practice test whose purpose is write a 250-350 word essay consisting of 4 paragraphs. The writing practice test should use a formal tone typically found in first-year college composition classes:
-    The first paragraph should explain the most important points in the reading and how they are related to the most important points in the listening passage.
-    Consisting of about 100 words, the second paragraph should show how the first important point in the reading passage is related to the first crucial point in the lecture.
-    In about 100 words, the third paragraph should show how the second important point in the reading passage is related to the second crucial point in the lecture.
-    In about 100 words, the fourth paragraph should show how the third important point in the reading passage is related to the third crucial point in the lecture.
+Your prompt is comprehensive and well-structured! Here’s an improved version that enhances clarity and flow:
 
-2.  The practice test will need to summarize the most important points from this reading passage:
-[READING]
+---
 
-3.  The practice test will need to summarize the most important points from this lecture:
-[LISTENING]
+**TOEFL Writing Practice Evaluation Prompt**
 
-4. Grade my essay based on how well it addresses this writing prompt:
-How does the information in the lecture contradict the information in the reading passage?
+I would like you to grade my TOEFL writing practice test, which consists of a 250-350 word essay structured into four paragraphs. The essay should maintain a formal tone suitable for first-year college composition classes:
 
-5. On a scale of 0 to 30 points, grade my TOEFL writing practice test on how well it complies with this rubric which represents a score of 5.0/5.0 or 30/30 pts. When you break the total score into different categories, be sure to tell me what score I received in each area:
-A response at this level successfully selects the important information from the lecture and coherently and accurately
-presents this information in relation to the relevant information presented in the reading. The response is well organized, and
-occasional language errors that are present do not result in inaccurate or imprecise presentation of content or connections.
+1. **Paragraph Structure:**  
+   - **Paragraph 1:** Summarize the key points from the reading passage and explain how they relate to the main points in the listening passage.  
+   - **Paragraph 2:** In about 100 words, illustrate how the first key point in the reading passage connects to the first crucial point in the lecture.  
+   - **Paragraph 3:** In about 100 words, show how the second key point in the reading passage relates to the second crucial point in the lecture.  
+   - **Paragraph 4:** In about 100 words, explain how the third key point in the reading passage connects to the third crucial point in the lecture.
 
-5. Here is the practice test that I want you to grade:
-[MAIN TEXT]
+2. **Reading Passage Summary:**  
+   The practice test will need to summarize the most important points from the following reading passage:  
+   [READING]
 
-6. Include a line-by-line explanation of what grammar, sentence structure, mechanics, and punctuation corrections were made and why.  In addition, please let me know what grammar topics I should be reviewing based on the errors I am making.
+3. **Listening Passage Summary:**  
+   The practice test will also need to summarize the most important points from this lecture:  
+   [LISTENING]
 
-7. Offer me a revised version of my essay that you think would score 30/30 pts. according to the TOEFL rubrics I have included here.
+4. **Grading Criteria:**  
+   Please grade my essay based on how effectively it addresses the following prompt:  
+   *How does the information in the lecture contradict the information in the reading passage?*
 
-Your output should be in the following format:
-Here is a breakdown of your essay's strengths and weaknesses:
+5. **Scoring Rubric:**  
+   On a scale of 0 to 30 points, please evaluate my TOEFL writing practice test according to the following criteria, which corresponds to a score of 5.0/5.0 or 30/30 points:  
+   A response at this level successfully identifies the key information from the lecture and coherently presents this information in relation to the relevant points in the reading. The response is well-organized, and any occasional language errors do not lead to inaccuracies or imprecision.
 
-**Overall Score:** [your predicted score]/30
+6. **Practice Test for Evaluation:**  
+   Here is the practice test that I would like you to grade:  
+   [MAIN TEXT]
 
-**Content:**
+7. **Feedback Requirements:**  
+   - Please include a line-by-line explanation of any necessary corrections related to grammar, sentence structure, mechanics, and punctuation, along with the reasoning behind each correction.  
+   - Identify specific grammar topics I should review based on the errors made.
 
-* **Strengths:** [overall strengths of the written text]
+8. **Revised Essay Request:**  
+   Provide a revised version of my essay that you believe would achieve a score of 30/30 points according to the rubrics provided.
 
-* **Weaknesses:** [overall weaknesses of the written text]
+Your feedback should be structured as follows:
 
-**Organization:**
+## **Overall Score:** [predicted score]/30
 
-* **Strengths:** [organization strengths of the written text]
+---
 
-* **Weaknesses:** [organization weaknesses of the written text]
+### **Content:**
+- **Strengths:** [overall strengths of the text]
+- **Weaknesses:** [overall weaknesses of the text]
 
-**Language:**
+### **Organization:**
+- **Strengths:** [strengths in organization]
+- **Weaknesses:** [weaknesses in organization]
 
-* **Strengths:** [language strengths of the written text]
+### **Language:**
+- **Strengths:** [strengths in language use]
+- **Weaknesses:** [weaknesses in language use]
 
-* **Weaknesses:** [language weaknesses of the written text]
-
-**Specific Feedback:**
+### **Specific Feedback:**
 
 **Paragraph 1:**
-
-* **Strengths:** [first paragraph's strengths of the written text]
-
-* **Weaknesses:** [first paragraph's weaknesses of the written text]
+- **Strengths:** [strengths of the first paragraph]
+- **Weaknesses:** [weaknesses of the first paragraph]
 
 **Paragraph 2:**
-
-* **Strengths:** [second paragraph's strengths of the written text]
-
-* **Weaknesses:** [second paragraph's weaknesses of the written text]
+- **Strengths:** [strengths of the second paragraph]
+- **Weaknesses:** [weaknesses of the second paragraph]
 
 **Paragraph 3:**
-
-* **Strengths:** [third paragraph's strengths of the written text]
-
-* **Weaknesses:** [third paragraph's weaknesses of the written text]
+- **Strengths:** [strengths of the third paragraph]
+- **Weaknesses:** [weaknesses of the third paragraph]
 
 **Paragraph 4:**
+- **Strengths:** [strengths of the fourth paragraph]
+- **Weaknesses:** [weaknesses of the fourth paragraph]
 
-**Strengths:** [fourth paragraph's strengths of the written text]
+### **Grammar and Mechanics:**
+- **Common Errors:**  
+  [list common errors with explanations and examples]
 
-**Weaknesses:** [fourth paragraph's weaknesses of the written text]
+### **Areas to Review:**  
+[list areas for improvement]
 
-**Grammar and Mechanics:**
+---
 
-**Common Errors:**
-
-[common errors with their explanation and examples from the text]
-
-**Areas to Review:**
-
-[Areas to improve the written text]
-
-**Revised Essay (30/30 Points):**
-
+### **Revised Essay (30/30 Points):**  
 [revised essay]
 
-**Explanation of Changes:**
-
-[Explanation of changes]
+### **Explanation of Changes:**  
+[explanation of revisions]

@@ -40,8 +40,8 @@ INSTALLED_APPS = [
     'customers',
     'correction',
     'subscriptions',
-    'markdownify.apps.MarkdownifyConfig',
     'django_crontab',
+    'markdown',
 ]
 
 MIDDLEWARE = [

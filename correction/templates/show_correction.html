@@ -1,6 +1,6 @@
 {% extends "layouts/base.html" %}
 {% load static %}
-{% load markdownify %}
+{% load markdown_extras %}
 
 {% block title %} Settings {% endblock %}
 
@@ -16,7 +16,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="card card-body bg-white border-light shadow-sm mb-4 min-vh-100" style="text-align: justify">
-                        {{ correction.correction|markdownify|linebreaks }}
+                        {{ correction.correction|render_markdown }}
                     </div>
                 </div>
             </div>

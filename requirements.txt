@@ -13,5 +13,5 @@ Pillow
 django-markdownify
 jsonfield
 django-crontab
-google.generativeai
+openai
 requests

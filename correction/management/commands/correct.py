@@ -2,8 +2,8 @@ import time
 import os
 from dbm import error
 
-import google.generativeai as genai
 from django.core.management import BaseCommand
+from openai import organization, OpenAI
 
 from correction.models import Correction, QuestionTypeData
 from subscriptions.helper_functions import get_current_plan_of_user
@@ -12,6 +12,7 @@ from subscriptions.models import Plan
 
 class Command(BaseCommand):
     help = "Corrects corrections"
+    client = None
 
     def make_prompt(self, correction):
         user_plan = get_current_plan_of_user(correction.user)
@@ -64,13 +65,21 @@ class Command(BaseCommand):
             Exception("(prompt_name) is not a valid prompt name")
 
     def call_api(self, prompt):
-        model = genai.GenerativeModel('gemini-1.5-flash')
-        return model.generate_content(prompt).text
+        response = self.client.chat.completions.create(
+            model='gpt-4o-mini',
+            messages=[{'role': 'user', 'content': prompt}],
+        )
+        return response.choices[0].message.content
 
 
     def handle(self, *args, **options):
-        genai.configure(api_key=os.environ['GENAI_API_KEY'])
+        # genai.configure(api_key=os.environ['GENAI_API_KEY'])
         request_limit = int(os.environ['MAX_NUMBER_OF_API_REQUESTS'])
+        self.client = OpenAI(
+            organization=os.environ['OPENAI_ORGANIZATION_ID'],
+            project=os.environ['OPENAI_PROJECT_ID'],
+            api_key=os.environ['OPENAI_API_KEY'],
+        )
         not_corrected_corrections = list(Correction.objects.filter(status=Correction.STATUS_PENDING).order_by(
             'created_at'))
 
@@ -92,11 +101,12 @@ class Command(BaseCommand):
                 correction = self.call_api(main_prompt)
                 current_correction.correction = correction
                 current_correction.status = Correction.STATUS_CORRECTED
+                request_limit -= 2
             else:
                 current_correction.correction = check_output
                 current_correction.status = Correction.STATUS_INVALID
+                request_limit -= 1
             current_correction.save()
-            request_limit -= 2
 
             if request_limit < 2 or iter >= len(not_corrected_corrections):
                 break

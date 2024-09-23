@@ -2,6 +2,7 @@
 """
 Copyright (c) 2019 - present AppSeed.us
 """
+from lib2to3.fixes.fix_input import context
 
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404, redirect
@@ -40,3 +41,8 @@ def pages(request):
 
         html_template = loader.get_template('page-500.html')
         return HttpResponse(html_template.render(context, request))
+
+@login_required(login_url="/login/")
+def dashboard(request):
+    context = {}
+    return render(request, "dashboard.html", context)

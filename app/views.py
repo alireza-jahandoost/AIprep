@@ -44,5 +44,5 @@ def pages(request):
 
 @login_required(login_url="/login/")
 def dashboard(request):
-    context = {}
+    context = {'segment':'dashboard'}
     return render(request, "dashboard.html", context)

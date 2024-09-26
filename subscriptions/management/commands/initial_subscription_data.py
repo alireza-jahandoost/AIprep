@@ -21,7 +21,7 @@ class Command(BaseCommand):
                             price=0)
 
         # Pro Plan
-        pro_prices = [1000, 2000, 3000]
+        pro_prices = [147000, 347000, 497000]
         pro_days = [30, 90, 180]
         for i in range(len(pro_prices)):
             Plan.objects.create(plan_name='Pro',
@@ -31,7 +31,7 @@ class Command(BaseCommand):
                                 price=pro_prices[i])
 
         # Pro Plus Plan
-        pro_plus_prices = [1000, 2000, 3000]
+        pro_plus_prices = [197000, 447000, 597000]
         pro_plus_days = [30, 90, 180]
         for i in range(len(pro_prices)):
             Plan.objects.create(plan_name='Pro Plus',

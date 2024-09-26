@@ -51,6 +51,7 @@ def order(request, plan_id):
     data = {
         "MerchantID": settings.MERCHANT,
         "Amount": plan.price,
+        "Currency": "IRT",
         "Description": f"خرید اشتراک {plan.plan_name} {plan.number_of_days} روزه",
         "CallbackURL": request.build_absolute_uri(reverse('verify', args=[plan.id])),
     }

@@ -24,7 +24,7 @@ class Command(BaseCommand):
         pro_prices = [1000, 2000, 3000]
         pro_days = [30, 90, 180]
         for i in range(len(pro_prices)):
-            Plan.objects.create(plan_name='Pro' + str(pro_days[i]),
+            Plan.objects.create(plan_name='Pro',
                                 available_daily_corrections=2,
                                 correction_type=Plan.CORRECTION_TYPE_PRO,
                                 number_of_days=pro_days[i],
@@ -34,7 +34,7 @@ class Command(BaseCommand):
         pro_plus_prices = [1000, 2000, 3000]
         pro_plus_days = [30, 90, 180]
         for i in range(len(pro_prices)):
-            Plan.objects.create(plan_name='ProPlus' + str(pro_plus_days[i]),
+            Plan.objects.create(plan_name='Pro Plus',
                                 available_daily_corrections=4,
                                 correction_type=Plan.CORRECTION_TYPE_PRO,
                                 number_of_days=pro_plus_days[i],

@@ -35,6 +35,7 @@ def show_plans(request):
     return render(request, 'show_plans.html',
                   {
                       'plans': plans,
+                      'current_plan_of_user': plan_of_the_user,
                       'segment': 'plans',
                       'can_user_order': plan_of_the_user.plan_name.lower() == 'normal'})
 

@@ -15,49 +15,200 @@
             <div class="row">
                 <div class="col-12">
                     <div class="card card-body bg-white border-light shadow-sm mb-4 min-vh-100">
-                        <div class="table-responsive">
-                  <table class="table table-centered table-nowrap mb-0 rounded text-center">
-                      <thead class="thead-light">
-                          <tr>
-                              <th class="border-0">#</th>
-                              <th class="border-0">Plan Name</th>
-                              <th class="border-0">Plan Duration (days)</th>
-                              <th class="border-0">Correction Type</th>
-                              <th class="border-0">Available Daily Corrections</th>
-                              <th class="border-0">Plan Price</th>
+                        <div class="table-responsive rounded">
+                  <table class="table table-centered table-nowrap mb-0 text-center table-striped">
+                      <colgroup>
+                          <col class=""></col>
+                          <col {% if current_plan_of_user.plan_name.lower == 'normal' %}style="background-color: rgb(140, 250, 173)"{% endif %}></col>
+                          <col {% if current_plan_of_user.plan_name.lower == 'pro' %}style="background-color: rgb(140, 250, 173)"{% endif %}></col>
+                          <col {% if current_plan_of_user.plan_name.lower == 'pro plus' %}style="background-color: rgb(140, 250, 173)"{% endif %}></col>
+                          <col {% if current_plan_of_user.plan_name.lower == 'enterprise' %}style="background-color: rgb(140, 250, 173)"{% endif %}></col>
+                      </colgroup>
+                      <thead class="bg-success text-white">
+                          <tr class="">
+                              <th class="border-0"></th>
+                              <th class="border-0">Normal</th>
+                              <th class="border-0">Pro</th>
+                              <th class="border-0">Pro Plus</th>
+                              <th class="border-0">Enterprise</th>
                           </tr>
                       </thead>
                       <tbody>
                           <!-- Item -->
-                          {% for plan in plans %}
                           <tr>
-                              <td class="border-0"><a href="#" class="text-primary font-weight-bold">{{ forloop.counter }}</a> </td>
-                              <td class="border-0 font-weight-bold">
-                                  {{ plan.plan_name }}
+                              <td class="border-0">
+                                  TOEFL Writing Task 1 Support
                               </td>
                               <td class="border-0">
-                                  {{ plan.number_of_days }}
+                                  ✅
                               </td>
                               <td class="border-0">
-                                  {{ plan.get_correction_type_display }}
+                                  ✅
                               </td>
                               <td class="border-0">
-                                  {{ plan.available_daily_corrections }}
+                                  ✅
                               </td>
                               <td class="border-0">
-                                  {{ plan.price }}
-                              </td>
-                              <td class="border-0">
-                                  {% if plan.price > 0 %}
-                                  <a href="{% if can_user_order %}{% url 'subscription_order' plan.id %}{% else %}#{% endif %}"
-                                        {% if not can_user_order %}onclick="alert('شما در حال حاضر اشتراک فعال دارید')"{% endif %}>
-                                      <span class="btn btn-success {% if not can_user_order %}disabled{% endif %}">Order</span>
-                                  </a>
-                                  {% endif %}
+                                  ✅
                               </td>
                           </tr>
                           <!-- End of Item -->
-                          {% endfor %}
+                          <!-- Item -->
+                          <tr>
+                              <td class="border-0">
+                                  TOEFL Writing Task 2 Support
+                              </td>
+                              <td class="border-0">
+                                  ✅
+                              </td>
+                              <td class="border-0">
+                                  ✅
+                              </td>
+                              <td class="border-0">
+                                  ✅
+                              </td>
+                              <td class="border-0">
+                                  ✅
+                              </td>
+                          </tr>
+                          <!-- End of Item -->
+                          <!-- Item -->
+                          <tr>
+                              <td class="border-0">
+                                  Correction Type
+                              </td>
+                              <td class="border-0">
+                                  Normal
+                              </td>
+                              <td class="border-0">
+                                  Premium
+                              </td>
+                              <td class="border-0">
+                                  Premium
+                              </td>
+                              <td class="border-0">
+                                  Premium
+                              </td>
+                          </tr>
+                          <!-- End of Item -->
+                          <!-- Item -->
+                          <tr>
+                              <td class="border-0">
+                                  Support
+                              </td>
+                              <td class="border-0">
+                                  Normal
+                              </td>
+                              <td class="border-0">
+                                  Premium
+                              </td>
+                              <td class="border-0">
+                                  Premium
+                              </td>
+                              <td class="border-0">
+                                  Premium
+                              </td>
+                          </tr>
+                          <!-- End of Item -->
+                          <!-- Item -->
+                          <tr>
+                              <td class="border-0">
+                                  Number of Daily Corrections
+                              </td>
+                              <td class="border-0">
+                                  2
+                              </td>
+                              <td class="border-0">
+                                  2
+                              </td>
+                              <td class="border-0">
+                                  4
+                              </td>
+                              <td class="border-0">
+                                  Custom
+                              </td>
+                          </tr>
+                          <!-- End of Item -->
+                          <!-- Item -->
+                          <tr>
+                              <td class="border-0">
+                                  1 Month
+                              </td>
+                              <td class="border-0">
+                                  Free
+                              </td>
+                              <td class="border-0">
+                                  147'000T
+                              </td>
+                              <td class="border-0">
+                                  197'000T
+                              </td>
+                              <td class="border-0">
+                                  Upon Negotiation
+                              </td>
+                          </tr>
+                          <!-- End of Item -->
+                          <!-- Item -->
+                          <tr>
+                              <td class="border-0">
+                                  3 Month
+                              </td>
+                              <td class="border-0">
+                                  Free
+                              </td>
+                              <td class="border-0">
+                                  347'000T
+                              </td>
+                              <td class="border-0">
+                                  447'000T
+                              </td>
+                              <td class="border-0">
+                                  Upon Negotiation
+                              </td>
+                          </tr>
+                          <!-- End of Item -->
+                          <!-- Item -->
+                          <tr>
+                              <td class="border-0">
+                                  6 Months
+                              </td>
+                              <td class="border-0">
+                                  Free
+                              </td>
+                              <td class="border-0">
+                                  497'000T
+                              </td>
+                              <td class="border-0">
+                                  597'000T
+                              </td>
+                              <td class="border-0">
+                                  Upon Negotiation
+                              </td>
+                          </tr>
+                          <!-- End of Item -->
+                          <!-- Item -->
+                          <tr>
+                              <td class="border-0">
+                                  Order
+                              </td>
+                              <td class="border-0">
+                                  -
+                              </td>
+                              <td class="border-0">
+{#                                  <a class="btn btn-success">Order</a>#}
+                                  <button type="button" {% if not can_user_order %}disabled{% endif %} class="btn btn-success mb-3" data-toggle="modal" data-target="#modal-pro">Order</button>
+
+                              </td>
+                              <td class="border-0">
+{#                                  <a class="btn btn-success">Order</a>#}
+                                  <button type="button" {% if not can_user_order %}disabled{% endif %} class="btn btn-success mb-3" data-toggle="modal" data-target="#modal-proplus">Order</button>
+                              </td>
+                              <td class="border-0">
+{#                                  <a class="btn btn-success">Order</a>#}
+                                  <button type="button" {% if not can_user_order %}disabled{% endif %} class="btn btn-success mb-3" data-toggle="modal" data-target="#modal-enterprise">Order</button>
+                              </td>
+                          </tr>
+                          <!-- End of Item -->
 
                       </tbody>
                   </table>
@@ -65,6 +216,67 @@
                     </div>
                 </div>
             </div>
+            <!-- Modal Content -->
+            <div class="modal fade" id="modal-pro" tabindex="-1" role="dialog" aria-labelledby="modal-pro" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h2 class="h6 modal-title">Pro Subscription</h2>
+                            <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body d-flex justify-content-between">
+                            <a class="btn btn-success m-1"  href="{% url 'subscription_order' 2%}">1 Month (147'000T)</a>
+                            <a class="btn btn-success m-1" href="{% url 'subscription_order' 3%}">3 Months (347'000T)</a>
+                            <a class="btn btn-success m-1" href="{% url 'subscription_order' 4%}">6 Months (497'000T)</a>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-link text-gray ml-auto" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End of Modal Content -->
+                  <!-- Modal Content -->
+            <div class="modal fade" id="modal-proplus" tabindex="-1" role="dialog" aria-labelledby="modal-proplus" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h2 class="h6 modal-title">Pro Plus Subscription</h2>
+                            <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body d-flex justify-content-between">
+                            <a class="btn btn-success m-1" href="{% url 'subscription_order' 5%}">1 Month (197'000T)</a>
+                            <a class="btn btn-success m-1" href="{% url 'subscription_order' 6%}">3 Months (447'000T)</a>
+                            <a class="btn btn-success m-1" href="{% url 'subscription_order' 7%}">6 Months (597'000T)</a>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-link text-gray ml-auto" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End of Modal Content -->
+                  <!-- Modal Content -->
+            <div class="modal fade" id="modal-enterprise" tabindex="-1" role="dialog" aria-labelledby="modal-enterprise" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h2 class="h6 modal-title">Enterprise Subscription</h2>
+                            <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body text-center">
+                                <b>Thank you for your interest in our Enterprise Plan!</b>
+                                <p>We’re excited to discuss how we can tailor our services to meet your specific needs.
+                                Please reach out to us via email, and a member of our team will get back to you promptly.</p>
+                                Email: enterprise@aiprep.ir
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-link text-gray ml-auto" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End of Modal Content -->
 
         {% include 'includes/footer.html' %}
 

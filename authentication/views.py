@@ -20,6 +20,20 @@ from sms_ir import SmsIr
 
 from .forms import LoginForm, SignUpForm
 
+def convert_persian_number_to_english(number):
+    persian_digits = "۰۱۲۳۴۵۶۷۸۹"
+    english_digits = "0123456789"
+
+    output = ""
+
+    for digit in number:
+        if digit in persian_digits:
+            idx = persian_digits.index(digit)
+            output += english_digits[idx]
+        else:
+            output += digit
+
+    return output
 
 def send_otp(code, phone_number):
     sms_ir = SmsIr(api_key=os.environ.get('SMS_IR_API_KEY'), linenumber=os.environ.get('SMS_IR_LINENUMBER'))
@@ -46,7 +60,12 @@ def login_view(request):
     if request.method == "POST":
         if form.is_valid():
             phone_number_user_name = form.cleaned_data.get("phone_number_user_name")
-            user = User.objects.filter(username=phone_number_user_name).get()
+            phone_number_user_name = convert_persian_number_to_english(phone_number_user_name)
+            user = None
+            try:
+                user = User.objects.filter(username=phone_number_user_name).get()
+            except:
+                pass
             if user is not None:
                 is_there_valid_otp = False
                 if user.otp_creation and ((timezone.now() - user.otp_creation).seconds < 300):
@@ -94,13 +113,14 @@ def register_user(request):
         form = SignUpForm(request.POST)
         if form.is_valid():
             # form.save()
-            if User.objects.filter(username=form.cleaned_data.get('phone_number_user_name')).exists():
+            phone_number_user_name = form.cleaned_data.get("phone_number_user_name")
+            phone_number_user_name = convert_persian_number_to_english(phone_number_user_name)
+            if User.objects.filter(username=phone_number_user_name).exists():
                 msg = 'User with this phone number already exists. Try to login.'
                 error = True
             else:
                 first_name = form.cleaned_data.get("first_name")
                 last_name = form.cleaned_data.get("last_name")
-                phone_number_user_name = form.cleaned_data.get("phone_number_user_name")
                 user = User.objects.create(username=phone_number_user_name,
                                            first_name=first_name,
                                            last_name=last_name)

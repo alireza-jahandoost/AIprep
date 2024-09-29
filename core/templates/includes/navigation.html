@@ -127,7 +127,7 @@
                       <div class="media d-flex align-items-center">
                         <div class="media-body ml-2 text-dark align-items-center d-none d-lg-block">
                           <span class="mb-0 font-small font-weight-bold">
-                            {{ request.user.username }}
+                            {{ request.user.get_full_name }}
                           </span>
                         </div>
                         <img class="ml-2 user-avatar md-avatar rounded-circle" alt="Image placeholder" src="/static/assets/img/team/default-profile-picture.png">

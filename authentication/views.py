@@ -88,26 +88,37 @@ def login_view(request):
 def register_user(request):
     msg = None
     success = False
+    error = False
 
     if request.method == "POST":
         form = SignUpForm(request.POST)
         if form.is_valid():
             # form.save()
-            first_name = form.cleaned_data.get("first_name")
-            last_name = form.cleaned_data.get("last_name")
-            phone_number_user_name = form.cleaned_data.get("phone_number_user_name")
-            user = User.objects.create(username=phone_number_user_name,
-                                       first_name=first_name,
-                                       last_name=last_name)
+            if User.objects.filter(username=form.cleaned_data.get('phone_number_user_name')).exists():
+                msg = 'User with this phone number already exists. Try to login.'
+                error = True
+            else:
+                first_name = form.cleaned_data.get("first_name")
+                last_name = form.cleaned_data.get("last_name")
+                phone_number_user_name = form.cleaned_data.get("phone_number_user_name")
+                user = User.objects.create(username=phone_number_user_name,
+                                           first_name=first_name,
+                                           last_name=last_name)
 
-            msg = 'User created - please <a href="/login">login</a>.'
-            success = True
+                msg = 'User created - please <a href="/login">login</a>.'
+                success = True
 
             # return redirect("/login/")
 
         else:
             msg = 'Form is not valid'
+            error = True
     else:
         form = SignUpForm()
 
-    return render(request, "accounts/register.html", {"form": form, "msg": msg, "success": success})
+    return render(request, "accounts/register.html", {
+        "form": form,
+        "msg": msg,
+        "success": success,
+        "error": error,
+    })

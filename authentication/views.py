@@ -11,10 +11,11 @@ from django.shortcuts import render
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from django.utils import timezone
+from requests import HTTPError
 
 from authentication.models import CustomUser as User
 from django.forms.utils import ErrorList
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseForbidden
 from django.urls import reverse
 from sms_ir import SmsIr
 
@@ -110,6 +111,11 @@ def register_user(request):
     error = False
 
     if request.method == "POST":
+
+        # For maintenance settings
+        if os.getenv('IS_REGISTRATION_CLOSED', False):
+            return HttpResponseForbidden("Registration is not open currently (maintenance)")
+
         form = SignUpForm(request.POST)
         if form.is_valid():
             # form.save()

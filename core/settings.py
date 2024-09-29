@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'app',  # Enable the inner app
     # 'customers',
+    'authentication',
     'correction',
     'subscriptions',
     'django_crontab',
@@ -144,3 +145,8 @@ STATICFILES_DIRS = (
 # Zarinpal
 MERCHANT = os.environ.get('MERCHANT')
 SANDBOX = True
+
+#############################################################
+#############################################################
+
+AUTH_USER_MODEL = 'authentication.CustomUser'

@@ -1,7 +1,7 @@
 import os
 import re
 
-from django.contrib.auth.models import User
+from authentication.models import CustomUser as User
 from django.core.management import BaseCommand
 
 from correction.models import Correction, QuestionTypeData

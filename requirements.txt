@@ -15,3 +15,4 @@ django-crontab
 openai
 requests
 django-markdown
+smsir-python

@@ -6,53 +6,59 @@ Copyright (c) 2019 - present AppSeed.us
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+from django.core.exceptions import ValidationError
+from django.utils.translation.trans_null import gettext_lazy
+
+
+def validate_phone_number(phone_number):
+    if len(phone_number) != 11 or not phone_number.isdigit():
+        raise ValidationError(
+            gettext_lazy("Phone number must have 11 digits")
+        )
 
 class LoginForm(forms.Form):
-    username = forms.CharField(
+    phone_number_user_name = forms.CharField(
         widget=forms.TextInput(
             attrs={
-                "placeholder" : "Username",                
+                "placeholder" : "09111111111",
                 "class": "form-control"
             }
-        ))
-    password = forms.CharField(
-        widget=forms.PasswordInput(
-            attrs={
-                "placeholder" : "Password",                
-                "class": "form-control"
-            }
-        ))
-
-class SignUpForm(UserCreationForm):
-    username = forms.CharField(
+        ),
+        validators=[validate_phone_number]
+    )
+    otp_code = forms.CharField(
         widget=forms.TextInput(
             attrs={
-                "placeholder" : "Username",                
+                "placeholder" : "OTP Code (Sent by SMS)",
                 "class": "form-control"
             }
-        ))
-    email = forms.EmailField(
-        widget=forms.EmailInput(
-            attrs={
-                "placeholder" : "Email",                
-                "class": "form-control"
-            }
-        ))
-    password1 = forms.CharField(
-        widget=forms.PasswordInput(
-            attrs={
-                "placeholder" : "Password",                
-                "class": "form-control"
-            }
-        ))
-    password2 = forms.CharField(
-        widget=forms.PasswordInput(
-            attrs={
-                "placeholder" : "Password check",                
-                "class": "form-control"
-            }
-        ))
+        ),
+        required=False,
+    )
 
-    class Meta:
-        model = User
-        fields = ('username', 'email', 'password1', 'password2')
+class SignUpForm(forms.Form):
+    first_name = forms.CharField(
+        widget=forms.TextInput(
+            attrs={
+                "placeholder" : "First Name",
+                "class": "form-control",
+            }
+        )
+    )
+    last_name = forms.CharField(
+        widget=forms.TextInput(
+            attrs={
+                "placeholder" : "Last Name",
+                "class": "form-control",
+            }
+        )
+    )
+    phone_number_user_name = forms.CharField(
+        widget=forms.TextInput(
+            attrs={
+                "placeholder" : "09111111111",
+                "class": "form-control",
+            }
+        ),
+        validators=[validate_phone_number]
+    )

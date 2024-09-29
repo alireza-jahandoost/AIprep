@@ -2,38 +2,85 @@
 """
 Copyright (c) 2019 - present AppSeed.us
 """
+import os
+import random
 
 from django.shortcuts import render
 
 # Create your views here.
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
-from django.contrib.auth.models import User
+from django.utils import timezone
+
+from authentication.models import CustomUser as User
 from django.forms.utils import ErrorList
 from django.http import HttpResponse
 from django.urls import reverse
+from sms_ir import SmsIr
 
 from .forms import LoginForm, SignUpForm
 
 
+def send_otp(code, phone_number):
+    sms_ir = SmsIr(api_key=os.environ.get('SMS_IR_API_KEY'), linenumber=os.environ.get('SMS_IR_LINENUMBER'))
+    response = sms_ir.send_verify_code(number=phone_number,
+                            template_id=os.environ.get('SMS_IR_TEMPLATE_ID'),
+                            parameters=[
+                                {
+                                    "name": "code",
+                                    "value": code,
+                                }
+                            ])
+    return response.json()['status'] == 1
+
 def login_view(request):
+    AUTHENTICATED_REDIRECT_NAME = 'dashboard'
+
+    if request.user.is_authenticated:
+        return redirect(AUTHENTICATED_REDIRECT_NAME)
+
     form = LoginForm(request.POST or None)
 
     msg = None
 
     if request.method == "POST":
-
         if form.is_valid():
-            username = form.cleaned_data.get("username")
-            password = form.cleaned_data.get("password")
-            user = authenticate(username=username, password=password)
+            phone_number_user_name = form.cleaned_data.get("phone_number_user_name")
+            user = User.objects.filter(username=phone_number_user_name).get()
             if user is not None:
-                login(request, user)
-                return redirect(reverse("dashboard"))
+                is_there_valid_otp = False
+                if user.otp_creation and ((timezone.now() - user.otp_creation).seconds < 300):
+                    is_there_valid_otp = True
+                if is_there_valid_otp:
+                    if form.cleaned_data.get("otp_code") != "":
+                        otp_code = form.cleaned_data.get("otp_code")
+                        if user.check_password(otp_code):
+                            login(request, user)
+                            return redirect(AUTHENTICATED_REDIRECT_NAME)
+                        else:
+                            msg = 'Invalid OTP Code'
+
+                    return render(request, "accounts/otp.html", {
+                        "form": form,
+                        "msg": msg,
+                        "phone_number_user_name": user.username,
+                    })
+                else:
+                    otp_password = random.randint(100000, 999999)
+                    user.set_password(otp_password)
+                    user.otp_creation = timezone.now()
+                    user.save()
+                    if send_otp(otp_password, user.username):
+                        msg = 'OTP code has been sent.'
+                    return render(request, "accounts/otp.html", {
+                        "form": form,
+                        "msg": msg,
+                        "phone_number_user_name": user.username,
+                    })
             else:
-                msg = 'Invalid credentials'
+                msg = 'Invalid Credentials'
         else:
-            msg = 'Error validating the form'
+            msg = 'Invalid Credentials'
 
     return render(request, "accounts/login.html", {"form": form, "msg": msg})
 
@@ -45,10 +92,13 @@ def register_user(request):
     if request.method == "POST":
         form = SignUpForm(request.POST)
         if form.is_valid():
-            form.save()
-            username = form.cleaned_data.get("username")
-            raw_password = form.cleaned_data.get("password1")
-            user = authenticate(username=username, password=raw_password)
+            # form.save()
+            first_name = form.cleaned_data.get("first_name")
+            last_name = form.cleaned_data.get("last_name")
+            phone_number_user_name = form.cleaned_data.get("phone_number_user_name")
+            user = User.objects.create(username=phone_number_user_name,
+                                       first_name=first_name,
+                                       last_name=last_name)
 
             msg = 'User created - please <a href="/login">login</a>.'
             success = True

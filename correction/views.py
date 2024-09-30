@@ -1,6 +1,7 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ValidationError
+from django.core.paginator import Paginator
 from django.db.models import Q
 from django.http import HttpResponseNotFound, HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
@@ -113,8 +114,17 @@ class CreateToeflIndependentView(View):
 @login_required(login_url='login')
 def ShowCorrectionsView(request):
     corrections = Correction.objects.filter(user=request.user)
+    paginator = Paginator(corrections, 25)
+    url_page_number = request.GET.get('page')
+    page_number = 1
+    if url_page_number and url_page_number.isdigit():
+        page_number = int(url_page_number)
+    corrections_object = paginator.get_page(page_number)
+
     return render(request, 'show_corrections.html', {
-        'corrections': corrections,
+        'corrections_object': corrections_object,
+        'page_range': paginator.page_range,
+        'current_page': page_number,
         'segment': 'corrections',
         'number_of_corrections': len(corrections),
     })

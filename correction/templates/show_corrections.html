@@ -29,37 +29,43 @@
                       </thead>
                       <tbody>
                           <!-- Item -->
-                          {% for correction in corrections %}
-                          <tr>
-                              <td class="border-0"><a href="#" class="text-primary font-weight-bold">{{ forloop.counter }}</a> </td>
-                              <td class="border-0 font-weight-bold">
-                                  {{ correction.question_type_data.get_exam_type_display }}
-                              </td>
-                              <td class="border-0">
-                                  {{ correction.question_type_data.get_exam_db_name_display }}
-                              </td>
-                              <td class="border-0">
-                                  {{ correction.question_type_data.exam_db_number }}
-                              </td>
-                              <td class="border-0">
-                                  {% if correction.get_status_display == "Pending" %}
-                                  <span class="text-warning font-weight-bold">Pending</span>
-                                  {% elif correction.get_status_display == "Invalid" %}
-                                  <span class="text-danger font-weight-bold">Invalid</span>
-                                  {% elif correction.get_status_display == "Corrected" %}
-                                  <span class="text-success font-weight-bold">Corrected</span>
-                                  {% endif %}
-                              </td>
-                              <td class="border-0">
-{#                                  {% if correction.get_status_display == "Corrected" %}#}
-                                  <a href="{% url 'show_correction' correction_id=correction.id %}">
-                                      <span class="fas fa-eye fa-lg text-info" title="Show Correction"></span>
-                                  </a>
-{#                                  {% endif %}#}
-                              </td>
-                          </tr>
-                          <!-- End of Item -->
-                          {% endfor %}
+                          {% if number_of_corrections == 0 %}
+                              <tr>
+                              <td colspan="6" class="text-center">There is no correction</td>
+                              </tr>
+                          {% else %}
+                              {% for correction in corrections %}
+                              <tr>
+                                  <td class="border-0"><a href="#" class="text-primary font-weight-bold">{{ forloop.counter }}</a> </td>
+                                  <td class="border-0 font-weight-bold">
+                                      {{ correction.question_type_data.get_exam_type_display }}
+                                  </td>
+                                  <td class="border-0">
+                                      {{ correction.question_type_data.get_exam_db_name_display }}
+                                  </td>
+                                  <td class="border-0">
+                                      {{ correction.question_type_data.exam_db_number }}
+                                  </td>
+                                  <td class="border-0">
+                                      {% if correction.get_status_display == "Pending" %}
+                                      <span class="text-warning font-weight-bold">Pending</span>
+                                      {% elif correction.get_status_display == "Invalid" %}
+                                      <span class="text-danger font-weight-bold">Invalid</span>
+                                      {% elif correction.get_status_display == "Corrected" %}
+                                      <span class="text-success font-weight-bold">Corrected</span>
+                                      {% endif %}
+                                  </td>
+                                  <td class="border-0">
+    {#                                  {% if correction.get_status_display == "Corrected" %}#}
+                                      <a href="{% url 'show_correction' correction_id=correction.id %}">
+                                          <span class="fas fa-eye fa-lg text-info" title="Show Correction"></span>
+                                      </a>
+    {#                                  {% endif %}#}
+                                  </td>
+                              </tr>
+                              <!-- End of Item -->
+                              {% endfor %}
+                        {% endif %}
 
                       </tbody>
                   </table>

@@ -24,21 +24,27 @@
                     </thead>
                     <tbody>
                         <!-- Item -->
-                        {% for transaction in transactions %}
-                        <tr>
-                            <td>
-                                <a href="/static/assets/invoice.html" class="font-weight-bold">
-                                    {{ forloop.counter }}
-                                </a>
-                            </td>
-                            <td>
-                                <span class="font-weight-normal">{{ transaction.plan.plan_name }}</span>
-                            </td>
-                            <td><span class="font-weight-normal">{{ transaction.ref_id }}</span></td>
-                            <td><span class="font-weight-normal">{{ transaction.card_pan }}</span></td>
-                            <td><span class="font-weight-normal">{{ transaction.created_at }}</span></td>
-                        </tr>
-                        {% endfor %}
+                        {% if number_of_transactions == 0 %}
+                            <tr>
+                                <td colspan="5" class="text-center">There is no transaction</td>
+                            </tr>
+                        {% else %}
+                            {% for transaction in transactions %}
+                            <tr>
+                                <td>
+                                    <a href="/static/assets/invoice.html" class="font-weight-bold">
+                                        {{ forloop.counter }}
+                                    </a>
+                                </td>
+                                <td>
+                                    <span class="font-weight-normal">{{ transaction.plan.plan_name }}</span>
+                                </td>
+                                <td><span class="font-weight-normal">{{ transaction.ref_id }}</span></td>
+                                <td><span class="font-weight-normal">{{ transaction.card_pan }}</span></td>
+                                <td><span class="font-weight-normal">{{ transaction.created_at }}</span></td>
+                            </tr>
+                            {% endfor %}
+                        {% endif %}
                     </tbody>
                 </table>
 {#                <div class="card-footer px-3 border-0 d-flex align-items-center justify-content-between">#}

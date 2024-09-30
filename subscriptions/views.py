@@ -120,4 +120,8 @@ def verify(request, plan_id):
 def transactions(request):
     transactions = Payment.objects.filter(user=request.user).all().order_by('-created_at')
     # breakpoint()
-    return render(request, 'transactions.html', {'transactions': transactions, 'segment': 'transactions'})
+    return render(request, 'transactions.html', {
+        'transactions': transactions,
+        'number_of_transactions': len(transactions),
+        'segment': 'transactions',
+    })

@@ -19,11 +19,14 @@ from subscriptions.helper_functions import get_current_plan_of_user, get_last_pa
 def dashboard(request):
     user_plan = get_current_plan_of_user(request.user)
     user_last_payment = get_last_payment_of_user(request.user)
+    corrections = request.user.correction_set.order_by('-created_at')[:5]
+
     context = {
         'segment': 'dashboard',
         'user_plan': user_plan,
         'remaining_corrections': max(0, user_plan.available_daily_corrections - get_number_of_today_corrections(request.user)),
-        'corrections': request.user.correction_set.order_by('-created_at')[:5]
+        'corrections': corrections,
+        'number_of_corrections': len(corrections),
     }
     if user_last_payment:
         context['start_of_plan'] = user_last_payment.created_at.strftime('%b %d')

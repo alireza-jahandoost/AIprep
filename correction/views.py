@@ -113,7 +113,11 @@ class CreateToeflIndependentView(View):
 @login_required(login_url='login')
 def ShowCorrectionsView(request):
     corrections = Correction.objects.filter(user=request.user)
-    return render(request, 'show_corrections.html', {'corrections': corrections, 'segment': 'corrections'})
+    return render(request, 'show_corrections.html', {
+        'corrections': corrections,
+        'segment': 'corrections',
+        'number_of_corrections': len(corrections),
+    })
 @login_required(login_url='login')
 def ShowCorrectionView(request, correction_id):
     correction = get_object_or_404(Correction, pk=correction_id)

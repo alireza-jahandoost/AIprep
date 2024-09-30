@@ -95,6 +95,11 @@
                                     </thead>
                                     <tbody>
                                     <!-- Item -->
+                                    {% if number_of_corrections == 0 %}
+                                        <tr>
+                                            <td colspan="6" class="text-center">There is no correction</td>
+                                        </tr>
+                                    {% else %}
                                       {% for correction in corrections %}
                                       <tr>
                                           <td class="border-0"><a href="#" class="text-primary font-weight-bold">{{ forloop.counter }}</a> </td>
@@ -126,6 +131,7 @@
                                       </tr>
                                       <!-- End of Item -->
                                       {% endfor %}
+                                    {% endif %}
                                     </tbody>
                                 </table>
                             </div>

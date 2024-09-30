@@ -15,38 +15,6 @@ from django.utils import timezone
 from correction.helper_functions import get_number_of_today_corrections
 from subscriptions.helper_functions import get_current_plan_of_user, get_last_payment_of_user
 
-
-@login_required(login_url="/login/")
-def index(request):
-    context = {'segment': 'index'}
-
-    html_template = loader.get_template('index.html')
-    return HttpResponse(html_template.render(context, request))
-
-
-@login_required(login_url="/login/")
-def pages(request):
-    context = {}
-    # All resource paths end in .html.
-    # Pick out the html file name from the url. And load that template.
-    try:
-
-        load_template = request.path.split('/')[-1]
-        context['segment'] = load_template
-
-        html_template = loader.get_template(load_template)
-        return HttpResponse(html_template.render(context, request))
-
-    except template.TemplateDoesNotExist:
-
-        html_template = loader.get_template('page-404.html')
-        return HttpResponse(html_template.render(context, request))
-
-    except:
-
-        html_template = loader.get_template('page-500.html')
-        return HttpResponse(html_template.render(context, request))
-
 @login_required(login_url="/login/")
 def dashboard(request):
     user_plan = get_current_plan_of_user(request.user)

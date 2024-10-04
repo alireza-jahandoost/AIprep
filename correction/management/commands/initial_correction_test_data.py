@@ -10,10 +10,10 @@ class Command(BaseCommand):
     help = "Makes some test data"
 
     def handle(self, *args, **options):
-        if User.objects.filter(username='admin').exists():
-            user = User.objects.filter(username='admin').get()
+        if User.objects.filter(username='09156197717').exists():
+            user = User.objects.filter(username='09156197717').get()
         else:
-            user = User.objects.create_user(username="admin", email="admin@admin.com", password="password")
+            user = User.objects.create_user(username="09156197717", password="password")
 
         toefl_integrated_tpo_64_file = open("correction/data/test_data/toefl_integrated_tpo_64.txt")
         toefl_integrated_tpo_64 = toefl_integrated_tpo_64_file.read()

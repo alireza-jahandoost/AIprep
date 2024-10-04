@@ -16,3 +16,4 @@ openai
 requests
 django-markdown
 smsir-python
+mysqlclient

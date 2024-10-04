@@ -58,8 +58,7 @@ $
 $ # Make staticfiles dir
 $ python manage.py collectstatic
 $
-$ # Make .env file and add info about 
-$ # DEBUG, MERCHANT of zarinpal, GENAI_API_KEY, MAX_NUMBER_OF_API_REQUESTS, SERVER, and SECRET
+$ # Make .env file and add info
 $ vim .env
 $
 $ # Make data
@@ -74,6 +73,36 @@ $ # Start the app - custom port
 $ # python manage.py runserver 0.0.0.0:<your_port>
 $
 $ # Access the web app in browser: http://127.0.0.1:8000/
+```
+
+### Format of the .env file
+
+```bash
+$ DEBUG=
+$ SECRET_KEY=
+
+$ SERVER=
+
+$ OPENAI_ORGANIZATION_ID=
+$ OPENAI_PROJECT_ID=
+$ OPENAI_API_KEY=
+
+$ MAX_NUMBER_OF_API_REQUESTS=
+
+$ MERCHANT=
+
+$ SMS_IR_API_KEY=
+$ SMS_IR_LINENUMBER=
+$ SMS_IR_TEMPLATE_ID=
+
+$ IS_REGISTRATION_CLOSED=
+
+$ DB_TYPE=
+$ DB_NAME=
+$ DB_USER=
+$ DB_PASSWORD=
+$ DB_HOST=
+$ DB_PORT=
 ```
 
 > Note: To use the app, please access the registration page and create a new user. After authentication, the app will unlock the private pages.

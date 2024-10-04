@@ -7,6 +7,7 @@ import os, random, string
 from dotenv import load_dotenv
 from unipath import Path
 import dj_database_url
+import django_extensions
 
 load_dotenv()
 
@@ -43,6 +44,7 @@ INSTALLED_APPS = [
     'subscriptions',
     'django_crontab',
     'markdown',
+    'django_extensions',
 ]
 
 MIDDLEWARE = [

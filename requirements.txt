@@ -17,3 +17,4 @@ requests
 django-markdown
 smsir-python
 mysqlclient
+django-extensions

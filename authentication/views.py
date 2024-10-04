@@ -70,8 +70,9 @@ def login_view(request):
             if user is not None:
 
                 # For testing
-                if os.environ.get('DEBUG') and user.username == '09156197717':
+                if os.getenv('DEBUG', False) and user.username == '09156197717':
                     login(request, user)
+                    return redirect(AUTHENTICATED_REDIRECT_NAME)
                 # End for testing
 
                 is_there_valid_otp = False

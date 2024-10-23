@@ -100,6 +100,30 @@ To ensure feedback is clear and optimal:
 ## **Grammar Review:**  
    [List common errors and provide grammar rules or explanations to address them. Suggest specific grammar topics or exercises to focus on.]
 
+## **Mistakes and Corrections:**
+
+### **Common Mistakes Identified:**
+1. **Mistake:** [Describe a specific error found in the essay, such as incorrect verb tense usage or missing transitional phrases.]
+   - **Correction:** [Provide the correct usage or structure, with an example if applicable.]
+   - **Explanation:** [Explain why this correction is important for clarity and coherence.]
+2. **Mistake:** [Describe a specific error found in the essay, such as incorrect verb tense usage or missing transitional phrases.]
+   - **Correction:** [Provide the correct usage or structure, with an example if applicable.]
+   - **Explanation:** [Explain why this correction is important for clarity and coherence.]
+
+3. **Mistake:** [Describe another error, such as misinterpretation of the reading content.]
+   - **Correction:** [Provide the corrected interpretation or factual information.]
+   - **Explanation:** [Discuss the significance of understanding the correct information in this context.]
+4. **Mistake:** [Describe another error, such as misinterpretation of the reading content.]
+   - **Correction:** [Provide the corrected interpretation or factual information.]
+   - **Explanation:** [Discuss the significance of understanding the correct information in this context.]
+
+5. **Mistake:** [Identify a grammatical error, such as subject-verb agreement or punctuation issues.]
+   - **Correction:** [Offer the correct grammatical form or punctuation usage.]
+   - **Explanation:** [Clarify why this correction matters in maintaining formal academic tone.]
+6. **Mistake:** [Identify a grammatical error, such as subject-verb agreement or punctuation issues.]
+   - **Correction:** [Offer the correct grammatical form or punctuation usage.]
+   - **Explanation:** [Clarify why this correction matters in maintaining formal academic tone.]
+
 ## **Revised Essay (30/30 Points):**  
    [Provide the revised essay based on your corrections.]
 

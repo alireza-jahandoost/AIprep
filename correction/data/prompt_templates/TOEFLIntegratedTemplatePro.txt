@@ -1,7 +1,7 @@
 ### TOEFL Writing Task 1: Essay Evaluation Prompt
 
 #### **Task:**  
-Please evaluate my TOEFL writing practice essay (250-350 words, 4 paragraphs) written in a formal academic tone similar to a first-year college composition class.
+Please evaluate my TOEFL writing practice essay (250-350 words, 4 paragraphs) written in a formal academic tone similar to that of a first-year college composition class.
 
 #### **Essay Structure:**  
 Your evaluation will focus on the following four-paragraph structure:
@@ -26,7 +26,7 @@ Evaluate my essay based on the extent to which it addresses this prompt:
 Rate the essay on a scale of 0 to 30, with 5.0/5.0 representing 30/30 points. Please grade the essay across the following areas:
 
 1. **Content (5 points):**  
-   Does the response accurately and coherently summarize the key points from the reading and lecture, and effectively demonstrate contradictions?
+   Does the response accurately and coherently summarize the key points from the reading and lecture and effectively demonstrate contradictions?
    
 2. **Organization (5 points):**  
    Is the essay well-structured, with clear topic sentences and smooth transitions between ideas?
@@ -57,7 +57,7 @@ To ensure that responses from LLMs are effective:
 
 - **Avoid overly brief responses:** Responses should fully engage with each part of the rubric, providing a balanced and insightful analysis.
   
-- **Avoid overly lengthy responses:** Stay concise and focused, adhering to the 500-600 word range. Do not include redundant explanations or excessive details unrelated to the core analysis.
+- **Avoid overly lengthy responses:** Stay concise and focused, adhering to the 600-1000 word range. Do not include redundant explanations or excessive details unrelated to the core analysis.
 
 #### **Reading Passage:**  
 [READING]
@@ -114,8 +114,36 @@ To ensure that responses from LLMs are effective:
 
 ### **Common Errors:** 
 [Identify recurring errors and explain them]  
+
 ### **Areas to Review:** 
 [List specific grammar or mechanics issues that need improvement]
+
+---
+
+### **Mistakes and Corrections:**
+
+#### **Common Mistakes Identified:**  
+1. **Mistake:** [Describe a specific error found in the essay, such as incorrect verb tense usage or missing transitional phrases.]  
+   - **Correction:** [Provide the correct usage or structure, with an example if applicable.]  
+   - **Explanation:** [Explain why this correction is important for clarity and coherence.]
+2. **Mistake:** [Describe a specific error found in the essay, such as incorrect verb tense usage or missing transitional phrases.]  
+   - **Correction:** [Provide the correct usage or structure, with an example if applicable.]  
+   - **Explanation:** [Explain why this correction is important for clarity and coherence.]
+
+3. **Mistake:** [Describe another error, such as misinterpretation of the lecture or reading content.]
+   - **Correction:** [Provide the corrected interpretation or factual information.]  
+   - **Explanation:** [Discuss the significance of understanding the correct information in this context.]
+4. **Mistake:** [Describe another error, such as misinterpretation of the lecture or reading content.]
+   - **Correction:** [Provide the corrected interpretation or factual information.]  
+   - **Explanation:** [Discuss the significance of understanding the correct information in this context.]
+
+5. **Mistake:** [Identify a grammatical error, such as subject-verb agreement or punctuation issues.]  
+   - **Correction:** [Offer the correct grammatical form or punctuation usage.]  
+   - **Explanation:** [Clarify why this correction matters in maintaining formal academic tone.]
+6. **Mistake:** [Identify a grammatical error, such as subject-verb agreement or punctuation issues.]  
+   - **Correction:** [Offer the correct grammatical form or punctuation usage.]  
+   - **Explanation:** [Clarify why this correction matters in maintaining formal academic tone.]
+
 
 ---
 
@@ -127,5 +155,3 @@ To ensure that responses from LLMs are effective:
 
 ## **Explanation of Changes:**  
 [Describe the revisions made and how they address the initial weaknesses]
-
----

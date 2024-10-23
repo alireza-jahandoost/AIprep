@@ -1,0 +1,6 @@
+Question :Doctor Ramirez:
+This week, we will discuss the advancements in artificial general intelligence (AGI) and superintelligence. AGI refers to highly autonomous systems that outperform humans in most economically valuable work, while superintelligence refers to AI systems that surpass human intelligence across all domains. Some experts argue that AGI or superintelligence could pose significant risks for humans if not properly controlled. On the other hand, some experts believe that the concerns surrounding AI as a threat to humanity are overstated. What are your thoughts on the potential threat of AI to humans?
+Ned:
+I believe that the potential threat of AI to humans in the future should not be underestimated. As AI technology advances, it is crucial to exercise caution and implement regulations to ensure that AI systems are developed and used responsibly, with a focus on human safety. Otherwise, AI will surpass human intelligence and conquer our world.
+Claire:
+I think the concerns surrounding AI are often exaggerated. Humans create these technologies, and they can be regulated and controlled. With appropriate guidelines, AI can be used for the benefit of society, contributing to various fields such as healthcare. Rather than fearing AI, we should focus on maximizing its potential.

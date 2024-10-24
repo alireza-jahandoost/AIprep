@@ -18,8 +18,8 @@ if settings.SANDBOX:
 else:
     sandbox = 'www'
 
-ZP_API_REQUEST = f"https://{sandbox}.zarinpal.com/pg/rest/WebGate/PaymentRequest.json"
-ZP_API_VERIFY = f"https://{sandbox}.zarinpal.com/pg/rest/WebGate/PaymentVerification.json"
+ZP_API_REQUEST = f"https://{sandbox}.zarinpal.com/pg/v4/payment/request.json"
+ZP_API_VERIFY = f"https://{sandbox}.zarinpal.com/pg/v4/payment/verify.json"
 ZP_API_STARTPAY = f"https://{sandbox}.zarinpal.com/pg/StartPay/"
 
 phone = 'YOUR_PHONE_NUMBER'  # Optional
@@ -49,11 +49,11 @@ def order(request, plan_id):
         return HttpResponse("Forbidden", status=403)
 
     data = {
-        "MerchantID": settings.MERCHANT,
-        "Amount": plan.price,
-        "Currency": "IRT",
-        "Description": f"خرید اشتراک {plan.plan_name} {plan.number_of_days} روزه",
-        "CallbackURL": request.build_absolute_uri(reverse('verify', args=[plan.id])),
+        "merchant_id": settings.MERCHANT,
+        "amount": plan.price,
+        "currency": "IRT",
+        "description": f"خرید اشتراک {plan.plan_name} {plan.number_of_days} روزه",
+        "callback_url": request.build_absolute_uri(reverse('verify', args=[plan.id])),
     }
     data = json.dumps(data)
     # set content length by data
@@ -63,13 +63,13 @@ def order(request, plan_id):
 
         if response.status_code == 200:
             response_json = response.json()
-            authority = response_json['Authority']
-            if response_json['Status'] == 100:
+            authority = response_json['data']['authority']
+            if response_json['data']['code'] == 100:
                 return redirect(ZP_API_STARTPAY + authority)
             else:
-                messages.error(request, 'خطایی رخ داده است (Repeated Request)')
+                messages.error(request, 'خطایی رخ داده است (Repeated Request)' + str(response.status_code))
         else:
-            messages.error(request, 'خطایی رخ داده است (Response Failed)')
+            messages.error(request, 'خطایی رخ داده است (Response Failed)' + str(response.status_code))
     except requests.exceptions.Timeout:
         messages.error(request, 'خطایی رخ داده است (Timeout Error)')
     except requests.exceptions.ConnectionError:
@@ -85,9 +85,9 @@ def verify(request, plan_id):
     status = request.GET.get('Status')
     if status == 'OK' and authority:
         data = {
-            "MerchantID": settings.MERCHANT,
-            "Amount": plan.price,
-            "Authority": authority,
+            "merchant_id": settings.MERCHANT,
+            "amount": plan.price,
+            "authority": authority,
         }
         data = json.dumps(data)
         # set content length by data
@@ -96,11 +96,13 @@ def verify(request, plan_id):
             response = requests.post(ZP_API_VERIFY, data=data, headers=headers)
             if response.status_code == 200:
                 response_json = response.json()
-                reference_id = response_json['RefID']
-                if response_json['Status'] == 100:
+                if response_json['data']['code'] == 100:
                     Payment.objects.create(plan=plan,
                                            user=request.user,
-                                           ref_id=response_json['RefID'], )
+                                           ref_id=response_json['data']['ref_id'],
+                                           card_hash=response_json['data']['card_hash'],
+                                           card_pan=response_json['data']['card_pan'],
+                                           code=response_json['data']['code'],)
                     messages.success(request, "تراکنش با موفقیت انجام شد. ممنون که در این راه، مارا انتخاب کرده اید.")
                 else:
                     messages.error(request, 'خطایی رخ داده است (Repeated Request)')

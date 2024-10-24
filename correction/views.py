@@ -10,7 +10,7 @@ from django.utils.decorators import method_decorator
 from django.views import View
 
 from correction.forms import form_validation_error, ToeflWritingForm
-from correction.helper_functions import get_number_of_today_corrections
+from correction.helper_functions import get_number_of_today_corrections, make_not_in_range_error_message
 from correction.models import Correction, QuestionTypeData
 from subscriptions.helper_functions import get_current_plan_of_user
 
@@ -46,7 +46,7 @@ class CreateToeflIntegratedView(View):
                                                                   exam_db_number=form.cleaned_data['exam_db_number'])
 
             except:
-                messages.error(request, "The specified exam is not supported! TPO 40-75 and NEO 01-40 are supported.")
+                messages.error(request, make_not_in_range_error_message(QuestionTypeData.EXAM_TYPE_TOEFL_TASK1, form.cleaned_data['exam_db_name'],))
                 context = {
                     'exam_db_name': form.cleaned_data['exam_db_name'],
                     'exam_db_number': form.cleaned_data['exam_db_number'],
@@ -92,7 +92,7 @@ class CreateToeflIndependentView(View):
                                                                   exam_db_number=form.cleaned_data['exam_db_number'])
 
             except:
-                messages.error(request, "The specified exam is not supported! NEO 01-10 is supported.")
+                messages.error(request, make_not_in_range_error_message(QuestionTypeData.EXAM_TYPE_TOEFL_TASK2, form.cleaned_data['exam_db_name'],))
                 context = {
                     'exam_db_name': form.cleaned_data['exam_db_name'],
                     'exam_db_number': form.cleaned_data['exam_db_number'],

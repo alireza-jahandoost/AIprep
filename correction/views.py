@@ -1,3 +1,6 @@
+import difflib
+import re
+
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ValidationError
@@ -169,6 +172,30 @@ def ShowCorrectionsView(request):
 @login_required(login_url='login')
 def ShowCorrectionView(request, correction_id):
     correction = get_object_or_404(Correction, pk=correction_id)
-    # if correction.correction is None or correction.get_status_display() == "Invalid":
-    #     return render(request, '../../core/templates/page-404.html')
-    return render(request, 'show_correction.html', {'correction': correction, 'segment': 'corrections'})
+    context = {
+                  'correction': correction,
+                  'segment': 'corrections'
+              }
+
+    if correction.correction is not None and correction.status == Correction.STATUS_CORRECTED:
+        try:
+            revised_text = re.search(r"\*\*Revised Essay \(30\/30 Points\):\*\*(.*?)---", correction.correction, re.DOTALL).group(1).strip()
+            d = difflib.Differ()
+            diff = list(d.compare(correction.answer.split(), revised_text.split()))
+
+            # Create HTML for the differences
+            result = []
+            for line in diff:
+                if line.startswith('+ '):
+                    result.append(f'<span style="color: green;" class="font-weight-bold  text-decoration-underline">{line[2:]}</span>')
+                elif line.startswith('- '):
+                    result.append(f'<span style="color: red;" class="font-weight-bold text-decoration-underline">{line[2:]}</span>')
+                else:
+                    result.append(line[2:])  # lines that are the same
+
+            # Join the results into a single HTML string
+            diff_html = ' '.join(result)
+            context['comparison'] = diff_html
+        except Exception as e:
+            pass
+    return render(request, 'show_correction.html', context)

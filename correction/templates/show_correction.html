@@ -28,6 +28,14 @@
                         {% else %}
                         <div>
                             {{ correction.correction|render_markdown }}
+                            {% if comparison %}
+                                <div>
+                                <h2>Comparison of revised and original text</h2>
+                                {% autoescape off %}
+                                    {{ comparison }}
+                                {% endautoescape %}
+                            </div>
+                            {% endif %}
                         </div>
                         {% endif %}
                     </div>

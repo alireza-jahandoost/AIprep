@@ -124,8 +124,10 @@ To ensure feedback is clear and optimal:
    - **Correction:** [Offer the correct grammatical form or punctuation usage.]
    - **Explanation:** [Clarify why this correction matters in maintaining formal academic tone.]
 
-## **Revised Essay (30/30 Points):**  
+## **Revised Essay (30/30 Points):**
    [Provide the revised essay based on your corrections.]
+
+---
 
 ## **Explanation of Revisions:**  
    [Explain what changes you made in the revised version and how they improve clarity, relevance, detail, and grammar.]

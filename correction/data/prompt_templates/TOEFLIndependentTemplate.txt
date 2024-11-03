@@ -57,6 +57,9 @@ Your output should follow this format:
 
 ### **Grammar Review:** [grammar review]  
 
-### **Revised Essay:** [revised essay]  
+### **Revised Essay (30/30 Points):**
+ [revised essay]  
+
+---
 
 ### **Explanation of Revisions:** [explanation of revisions]

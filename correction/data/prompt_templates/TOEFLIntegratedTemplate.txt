@@ -84,8 +84,10 @@ Your feedback should be structured as follows:
 
 ---
 
-### **Revised Essay (30/30 Points):**  
+### **Revised Essay (30/30 Points):**
 [revised essay]
+
+---
 
 ### **Explanation of Changes:**  
 [explanation of revisions]

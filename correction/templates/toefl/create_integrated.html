@@ -16,11 +16,11 @@
             {% csrf_token %}
             <div class="row">
                 <div class="col-12">
-                    <div class="card card-body bg-white border-light shadow-sm mb-4">
-                        <h2 class="h5 mb-4">TOEFL Writing Integrated</h2>
+                    <div class="card card-body bg-white border-light shadow-sm">
+                        <h2 class="h5">TOEFL Writing Integrated</h2>
                         <div class="row">
-                            <div class="col-md-6 mb-3">
-                                <div class="mb-4">
+                            <div class="col-md-6">
+                                <div class="">
                                     <label class="my-1 mr-2" for="exam_db_name">Exam Type</label>
                                     <select class="form-select" id="exam_db_name" aria-label="Default select example" name="exam_db_name">
                                         <option value="1" {% if exam_db_name == "1" %}selected{% endif %}>TPO</option>
@@ -28,7 +28,7 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-md-6 mb-3">
+                            <div class="col-md-6">
                                  <div class="form-group">
                                     <label for="exam_db_number">Exam Number</label>
                                     <input name="exam_db_number" class="form-control" id="exam_db_number" type="number"
@@ -36,6 +36,8 @@
                                 </div>
                             </div>
                         </div>
+                        <p class="small font-monospace text-dark mb-0">* {{ tpo_range }}</p>
+                        <p class="small font-monospace text-dark">* {{ neo_range }}</p>
                         <div class="row align-items-center">
                             <div class="">
                                     <label for="textarea">Answer</label>

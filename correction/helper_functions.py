@@ -15,7 +15,7 @@ def get_supported_exams(exam_type, exam_db_name):
         return 0, 0
     return min(exam_db_numbers)[0], max(exam_db_numbers)[0]
 
-def make_not_in_range_error_message(exam_type, exam_db_name):
+def get_supported_range_of_exam_message(exam_type, exam_db_name):
     exam_db_name_str = None
     for x in QuestionTypeData.EXAM_DB_CHOICES:
         if str(x[0]) == str(exam_db_name):
@@ -31,5 +31,7 @@ def make_not_in_range_error_message(exam_type, exam_db_name):
     if not minimum or not maximum:
         return f"{exam_db_name_str} of {exam_type_str} is not supported!"
 
-    return f"The specified exam is not supported! {exam_db_name_str} of {exam_type_str} is supported from {minimum} to {maximum}."
-# TODO: fix error in this file
+    return f"{exam_type_str} of {exam_db_name_str} is supported from number {minimum} to {maximum}."
+
+def make_not_in_range_error_message(exam_type, exam_db_name):
+    return f"The specified exam is not supported! " + get_supported_range_of_exam_message(exam_type, exam_db_name)

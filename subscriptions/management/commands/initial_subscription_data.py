@@ -44,6 +44,6 @@ class Command(BaseCommand):
         Plan.objects.create(plan_name='Pro Plus (Trial)',
                             available_daily_corrections=4,
                             correction_type=Plan.CORRECTION_TYPE_PRO,
-                            number_of_days=7,
+                            number_of_days=8,
                             price=100000000)
 

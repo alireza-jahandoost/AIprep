@@ -19,6 +19,7 @@ from django.http import HttpResponse, HttpResponseForbidden
 from django.urls import reverse
 from sms_ir import SmsIr
 
+from subscriptions.models import Plan, Payment
 from .forms import LoginForm, SignUpForm
 
 def convert_persian_number_to_english(number):
@@ -138,6 +139,15 @@ def register_user(request):
                 user = User.objects.create(username=phone_number_user_name,
                                            first_name=first_name,
                                            last_name=last_name)
+
+                # Activate trial
+                trial_plan = Plan.objects.filter(plan_name='Pro Plus (Trial)').get()
+                Payment.objects.create(
+                    user=user,
+                    plan=trial_plan,
+                    hide_payment=True,
+                )
+                # End activate trial
 
                 msg = 'User created - please <a href="/login">login</a>.'
                 success = True

@@ -121,7 +121,7 @@ def verify(request, plan_id):
 
 @login_required(login_url='login')
 def transactions(request):
-    transactions = Payment.objects.filter(user=request.user).all().order_by('-created_at')
+    transactions = Payment.objects.filter(user=request.user, hide_payment=False).all().order_by('-created_at')
     # breakpoint()
     return render(request, 'transactions.html', {
         'transactions': transactions,

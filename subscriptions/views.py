@@ -31,6 +31,7 @@ phone = 'YOUR_PHONE_NUMBER'  # Optional
 @login_required(login_url='login')
 def show_plans(request):
     plans = Plan.objects.all()
+    plans = filter(lambda plan: 'trial' not in plan.plan_name.lower(), plans)
     plan_of_the_user = get_current_plan_of_user(request.user)
     return render(request, 'show_plans.html',
                   {

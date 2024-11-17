@@ -21,7 +21,8 @@
                           <col class=""></col>
                           <col {% if current_plan_of_user.plan_name.lower == 'normal' %}style="background-color: rgb(140, 250, 173)"{% endif %}></col>
                           <col {% if current_plan_of_user.plan_name.lower == 'pro' %}style="background-color: rgb(140, 250, 173)"{% endif %}></col>
-                          <col {% if current_plan_of_user.plan_name.lower == 'pro plus' %}style="background-color: rgb(140, 250, 173)"{% endif %}></col>
+{#                            To include both 'pro plus' and 'pro plus (trial)'  #}
+                          <col {% if 'pro plus' in current_plan_of_user.plan_name.lower %}style="background-color: rgb(140, 250, 173)"{% endif %}></col>
                           <col {% if current_plan_of_user.plan_name.lower == 'enterprise' %}style="background-color: rgb(140, 250, 173)"{% endif %}></col>
                       </colgroup>
                       <thead class="bg-success text-white">

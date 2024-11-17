@@ -39,3 +39,11 @@ class Command(BaseCommand):
                                 correction_type=Plan.CORRECTION_TYPE_PRO,
                                 number_of_days=pro_plus_days[i],
                                 price=pro_plus_prices[i])
+
+        # Trial plan
+        Plan.objects.create(plan_name='Pro Plus (Trial)',
+                            available_daily_corrections=4,
+                            correction_type=Plan.CORRECTION_TYPE_PRO,
+                            number_of_days=7,
+                            price=100000000)
+

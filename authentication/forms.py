@@ -62,3 +62,8 @@ class SignUpForm(forms.Form):
         ),
         validators=[validate_phone_number]
     )
+    agree_to_terms = forms.BooleanField(
+        label='I agree to the <a href="/terms-and-conditions/" target="_blank" class="text-success">Terms and Conditions</a>',
+        widget=forms.CheckboxInput(attrs={"class": "form-check-input"}),
+        error_messages={"required": "You must agree to the terms and conditions to register."},
+    )

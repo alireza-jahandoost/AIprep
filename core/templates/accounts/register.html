@@ -75,6 +75,18 @@
                                     </div>
                                     <!-- End of Form -->
 
+                                    <!-- Form -->
+                                    <div class="form-check">
+                                      {{ form.agree_to_terms }}
+                                      <label class="form-check-label" for="termsCheckbox">
+                                        I agree to the
+                                        <a href="{% url 'terms' %}" target="_blank" class="text-success">Terms and Conditions</a>
+                                        <span class="text-danger">{{ form.agree_to_terms.errors }}</span>
+
+                                      </label>
+                                    </div>
+                                    <!-- End of Form -->
+
                                     <div class="form-group">
 
                                         <div class="d-flex justify-content-between align-items-center mb-4">

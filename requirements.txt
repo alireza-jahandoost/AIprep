@@ -18,3 +18,4 @@ django-markdown
 smsir-python
 mysqlclient
 django-extensions
+xhtml2pdf

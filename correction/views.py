@@ -1,23 +1,27 @@
 import difflib
 import re
+from io import BufferedIOBase
 
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ValidationError
 from django.core.paginator import Paginator
 from django.db.models import Q
-from django.http import HttpResponseNotFound, HttpResponse
+from django.http import HttpResponseNotFound, HttpResponse, FileResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
 from django.utils.decorators import method_decorator
 from django.views import View
+from six import BytesIO
 
 from correction.forms import form_validation_error, ToeflWritingForm
 from correction.helper_functions import get_number_of_today_corrections, make_not_in_range_error_message, \
     get_supported_range_of_exam_message
 from correction.models import Correction, QuestionTypeData
+from correction.templatetags.markdown_extras import render_markdown
 from subscriptions.helper_functions import get_current_plan_of_user
 
+from xhtml2pdf import pisa
 
 # import pdb
 # pdb.set_trace()
@@ -199,3 +203,43 @@ def ShowCorrectionView(request, correction_id):
         except Exception as e:
             pass
     return render(request, 'show_correction.html', context)
+
+
+
+@login_required(login_url='login')
+def generate_pdf_from_template(request):
+    correction = Correction.objects.get(pk=1)
+    context = {
+                  'correction': render_markdown(correction.correction),
+                  'segment': 'corrections'
+              }
+
+    if correction.correction is not None and correction.status == Correction.STATUS_CORRECTED:
+        try:
+            revised_text = re.search(r"\*\*Revised Essay \(30\/30 Points\):\*\*(.*?)---", correction.correction, re.DOTALL).group(1).strip()
+            d = difflib.Differ()
+            diff = list(d.compare(correction.answer.split(), revised_text.split()))
+
+            # Create HTML for the differences
+            result = []
+            for line in diff:
+                if line.startswith('+ '):
+                    result.append(f'<span style="color: green;" class="font-weight-bold  text-decoration-underline">{line[2:]}</span>')
+                elif line.startswith('- '):
+                    result.append(f'<span style="color: red;" class="font-weight-bold text-decoration-underline">{line[2:]}</span>')
+                else:
+                    result.append(line[2:])  # lines that are the same
+
+            # Join the results into a single HTML string
+            diff_html = ' '.join(result)
+            context['comparison'] = diff_html
+        except Exception as e:
+            pass
+    # return HttpResponse(context['correction'] + context['comparison'])
+    file = BytesIO()
+    pisa_status = pisa.CreatePDF(
+        context['correction'] + context['comparison'],
+        dest=file,
+    )
+    # return HttpResponse((file.getbuffer().tobytes())
+    return HttpResponse(file.getbuffer().tobytes(), content_type='application/pdf')

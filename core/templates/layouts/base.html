@@ -64,6 +64,17 @@
 <!-- Volt CSS -->
 <link type="text/css" href="/static/assets/css/volt.css" rel="stylesheet">
 
+  <style>
+    .modal-content {
+      border-radius: 10px;
+      background: linear-gradient(135deg, #6a11cb, #2575fc);
+      color: white;
+    }
+    .modal-header, .modal-footer {
+      border: none;
+    }
+  </style>
+
     <!-- Specific Page CSS goes HERE  -->
     {% block stylesheets %}{% endblock stylesheets %}
 
@@ -82,6 +93,27 @@
         </div>
     </nav>
 
+{#    Modal start#}
+    {% for notification in notifications %}
+  <div class="modal fade" id="notificationModal{{ notification.id }}" tabindex="-1" aria-labelledby="notificationModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="notificationModalLabel{{ notification.id }}">{{ notification.title }}</h5>
+          <button type="button" class="btn-close close-modal{{ notification.id }}" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            {{ notification.text }}
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary close-modal{{ notification.id }}">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+    {% endfor %}
+{#    Modal end#}
+
     <div class="container-fluid bg-soft">
         <div class="row">
             <div class="col-12">
@@ -95,7 +127,29 @@
     </div>
 
     {% include 'includes/scripts.html' %}    
-    
+
+         <script>
+    // Automatically show the modal on page load
+    window.onload = function () {
+    {% for notification in notifications %}
+      const modalElement{{ notification.id }} = document.getElementById('notificationModal{{ notification.id }}');
+      const modal{{ notification.id }} = new bootstrap.Modal(modalElement{{ notification.id }});
+      modal{{ notification.id }}.show();
+    {% endfor %}
+
+    {% for notification in notifications %}
+      // Add click event listeners to elements with the 'close-modal' class
+      const closeModalElements{{ notification.id }} = document.querySelectorAll('.close-modal{{ notification.id }}');
+      closeModalElements{{ notification.id }}.forEach(element => {
+        element.addEventListener('click', function () {
+          modal{{ notification.id }}.hide(); // Close the modal programmatically
+        });
+      });
+    {% endfor %}
+
+    };
+  </script>
+
     <!-- Specific Page JS goes HERE  -->
     {% block javascripts %}{% endblock javascripts %}
 

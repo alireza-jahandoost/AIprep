@@ -6,6 +6,7 @@ import datetime
 from lib2to3.fixes.fix_input import context
 
 from django.contrib.auth.decorators import login_required
+from django.db.models import Q
 from django.shortcuts import render, get_object_or_404, redirect
 from django.template import loader
 from django.http import HttpResponse
@@ -20,6 +21,12 @@ def dashboard(request):
     user_plan = get_current_plan_of_user(request.user)
     user_last_payment = get_last_payment_of_user(request.user)
     corrections = request.user.correction_set.order_by('-created_at')[:5]
+    notifications = (request.user.notification_set.filter(Q(is_seen=False) & (Q(expires_at__gt=timezone.now()) | Q(expires_at=None)))
+                     .order_by('expires_at').all())
+
+    for notification in notifications:
+        notification.is_seen = True
+        notification.save()
 
     context = {
         'segment': 'dashboard',
@@ -27,6 +34,7 @@ def dashboard(request):
         'remaining_corrections': max(0, user_plan.available_daily_corrections - get_number_of_today_corrections(request.user)),
         'corrections': corrections,
         'number_of_corrections': len(corrections),
+        'notifications': notifications,
     }
     if user_last_payment:
         context['start_of_plan'] = user_last_payment.created_at.strftime('%b %d')

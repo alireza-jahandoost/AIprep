@@ -1,3 +1,4 @@
+import logging
 import time
 
 from subscriptions.models import Plan
@@ -12,3 +13,6 @@ def get_current_plan_of_user(user):
         return last_payment.plan
     else:
         return Plan.objects.filter(plan_name='Normal').get()
+
+def log_error(error_message):
+    logging.getLogger("ERROR").error(error_message)

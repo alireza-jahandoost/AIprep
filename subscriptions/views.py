@@ -9,7 +9,7 @@ import json
 from django.urls import reverse
 from django.utils.decorators import method_decorator
 
-from subscriptions.helper_functions import get_current_plan_of_user
+from subscriptions.helper_functions import get_current_plan_of_user, log_error
 from subscriptions.models import Plan, Payment
 
 #? sandbox merchant
@@ -71,10 +71,12 @@ def order(request, plan_id):
                 messages.error(request, 'خطایی رخ داده است (Repeated Request)' + str(response.status_code))
         else:
             messages.error(request, 'خطایی رخ داده است (Response Failed)' + str(response.status_code))
-    except requests.exceptions.Timeout:
+    except requests.exceptions.Timeout as e:
         messages.error(request, 'خطایی رخ داده است (Timeout Error)')
-    except requests.exceptions.ConnectionError:
+        log_error(str(e))
+    except requests.exceptions.ConnectionError as e:
         messages.error(request, 'خطایی رخ داده است (Connection Error)')
+        log_error(str(e))
     return redirect(reverse('subscription_transactions'))
 
 
@@ -109,10 +111,12 @@ def verify(request, plan_id):
                     messages.error(request, 'خطایی رخ داده است (Repeated Request)')
             else:
                 messages.error(request, 'خطایی رخ داده است (Response Failed)')
-        except requests.exceptions.Timeout:
+        except requests.exceptions.Timeout as e:
             messages.error(request, 'خطایی رخ داده است (Timeout Error)')
-        except requests.exceptions.ConnectionError:
+            log_error(str(e))
+        except requests.exceptions.ConnectionError as e:
             messages.error(request, 'خطایی رخ داده است (Connection Error)')
+            log_error(str(e))
     else:
         messages.error(request, 'تراکنش ناموفق بود')
 

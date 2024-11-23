@@ -174,7 +174,11 @@ def ShowCorrectionsView(request):
     })
 @login_required(login_url='login')
 def ShowCorrectionView(request, correction_id):
-    correction = get_object_or_404(Correction, pk=correction_id)
+    if request.user.correction_set.filter(pk=correction_id).exists():
+        correction = Correction.objects.get(pk=1)
+    else:
+        return HttpResponseNotFound()
+
     context = {
                   'correction': correction,
                   'segment': 'corrections'

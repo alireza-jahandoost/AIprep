@@ -6,7 +6,7 @@ from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ValidationError
 from django.core.paginator import Paginator
 from django.db.models import Q
-from django.http import HttpResponseNotFound, HttpResponse, FileResponse
+from django.http import HttpResponseNotFound, HttpResponse, FileResponse, Http404
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
 from django.utils.decorators import method_decorator
@@ -193,17 +193,19 @@ def ShowCorrectionView(request, correction_id):
 
 
 @login_required(login_url='login')
-def generate_pdf_from_template(request):
-    correction = Correction.objects.get(pk=1)
+def generate_pdf_from_template(request, correction_id):
+    if request.user.correction_set.filter(pk=correction_id).exists():
+        correction = Correction.objects.get(pk=1)
+    else:
+        return HttpResponseNotFound()
 
     comparison_html = ""
-    if correction.correction is not None and correction.status == Correction.STATUS_CORRECTED:
-        try:
-            original_text = correction.answer
-            revised_text = re.search(r"\*\*Revised Essay \(30\/30 Points\):\*\*(.*?)---", correction.correction, re.DOTALL).group(1).strip()
-            comparison_html = make_comparison(original_text, revised_text)
-        except Exception as e:
-            pass
+    try:
+        original_text = correction.answer
+        revised_text = re.search(r"\*\*Revised Essay \(30\/30 Points\):\*\*(.*?)---", correction.correction, re.DOTALL).group(1).strip()
+        comparison_html = make_comparison(original_text, revised_text)
+    except Exception as e:
+        pass
 
     with open("correction/data/pdf_templates/plain.html") as f:
         full_html = f.read()

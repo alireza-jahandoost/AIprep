@@ -1,5 +1,6 @@
 import pytz
 import datetime
+import difflib
 
 from correction.models import QuestionTypeData
 
@@ -35,3 +36,23 @@ def get_supported_range_of_exam_message(exam_type, exam_db_name):
 
 def make_not_in_range_error_message(exam_type, exam_db_name):
     return f"The specified exam is not supported! " + get_supported_range_of_exam_message(exam_type, exam_db_name)
+
+def make_comparison(original_text, new_text):
+    d = difflib.Differ()
+    diff = list(d.compare(original_text.split(), new_text.split()))
+
+    # Create HTML for the differences
+    result = []
+    for line in diff:
+        if line.startswith('+ '):
+            result.append(
+                f'<span style="color: green;" class="font-weight-bold  text-decoration-underline">{line[2:]}</span>')
+        elif line.startswith('- '):
+            result.append(
+                f'<span style="color: red;" class="font-weight-bold text-decoration-underline">{line[2:]}</span>')
+        else:
+            result.append(line[2:])  # lines that are the same
+
+    # Join the results into a single HTML string
+    diff_html = ' '.join(result)
+    return diff_html

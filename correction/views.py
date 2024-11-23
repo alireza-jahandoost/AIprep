@@ -1,4 +1,3 @@
-import difflib
 import re
 from io import BufferedIOBase
 
@@ -16,7 +15,7 @@ from six import BytesIO
 
 from correction.forms import form_validation_error, ToeflWritingForm
 from correction.helper_functions import get_number_of_today_corrections, make_not_in_range_error_message, \
-    get_supported_range_of_exam_message
+    get_supported_range_of_exam_message, make_comparison
 from correction.models import Correction, QuestionTypeData
 from correction.templatetags.markdown_extras import render_markdown
 from subscriptions.helper_functions import get_current_plan_of_user
@@ -183,23 +182,10 @@ def ShowCorrectionView(request, correction_id):
 
     if correction.correction is not None and correction.status == Correction.STATUS_CORRECTED:
         try:
+            original_text = correction.answer
             revised_text = re.search(r"\*\*Revised Essay \(30\/30 Points\):\*\*(.*?)---", correction.correction, re.DOTALL).group(1).strip()
-            d = difflib.Differ()
-            diff = list(d.compare(correction.answer.split(), revised_text.split()))
-
-            # Create HTML for the differences
-            result = []
-            for line in diff:
-                if line.startswith('+ '):
-                    result.append(f'<span style="color: green;" class="font-weight-bold  text-decoration-underline">{line[2:]}</span>')
-                elif line.startswith('- '):
-                    result.append(f'<span style="color: red;" class="font-weight-bold text-decoration-underline">{line[2:]}</span>')
-                else:
-                    result.append(line[2:])  # lines that are the same
-
-            # Join the results into a single HTML string
-            diff_html = ' '.join(result)
-            context['comparison'] = diff_html
+            comparison_html = make_comparison(original_text, revised_text)
+            context['comparison'] = comparison_html
         except Exception as e:
             pass
     return render(request, 'show_correction.html', context)
@@ -209,41 +195,23 @@ def ShowCorrectionView(request, correction_id):
 @login_required(login_url='login')
 def generate_pdf_from_template(request):
     correction = Correction.objects.get(pk=1)
-    context = {
-                  'correction': render_markdown(correction.correction),
-                  'segment': 'corrections'
-              }
 
+    comparison_html = ""
     if correction.correction is not None and correction.status == Correction.STATUS_CORRECTED:
         try:
+            original_text = correction.answer
             revised_text = re.search(r"\*\*Revised Essay \(30\/30 Points\):\*\*(.*?)---", correction.correction, re.DOTALL).group(1).strip()
-            d = difflib.Differ()
-            diff = list(d.compare(correction.answer.split(), revised_text.split()))
-
-            # Create HTML for the differences
-            result = []
-            for line in diff:
-                if line.startswith('+ '):
-                    result.append(f'<span style="color: green;" class="font-weight-bold  text-decoration-underline">{line[2:]}</span>')
-                elif line.startswith('- '):
-                    result.append(f'<span style="color: red;" class="font-weight-bold text-decoration-underline">{line[2:]}</span>')
-                else:
-                    result.append(line[2:])  # lines that are the same
-
-            # Join the results into a single HTML string
-            diff_html = ' '.join(result)
-            context['comparison'] = diff_html
+            comparison_html = make_comparison(original_text, revised_text)
         except Exception as e:
             pass
-    # return HttpResponse(context['correction'] + context['comparison'])
-    full_html = ""
+
     with open("correction/data/pdf_templates/plain.html") as f:
         full_html = f.read()
-        full_html = full_html.replace("[MAIN TEXT]", context['correction'] + context['comparison'])
+        full_html = full_html.replace("[MAIN TEXT]", render_markdown(correction.correction) +
+                                                            comparison_html)
     file = BytesIO()
-    pisa_status = pisa.CreatePDF(
+    pisa.CreatePDF(
         full_html,
         dest=file,
     )
-    # return HttpResponse((file.getbuffer().tobytes())
     return HttpResponse(file.getbuffer().tobytes(), content_type='application/pdf')

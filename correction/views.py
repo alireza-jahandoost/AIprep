@@ -236,9 +236,13 @@ def generate_pdf_from_template(request):
         except Exception as e:
             pass
     # return HttpResponse(context['correction'] + context['comparison'])
+    full_html = ""
+    with open("correction/data/pdf_templates/plain.html") as f:
+        full_html = f.read()
+        full_html = full_html.replace("[MAIN TEXT]", context['correction'] + context['comparison'])
     file = BytesIO()
     pisa_status = pisa.CreatePDF(
-        context['correction'] + context['comparison'],
+        full_html,
         dest=file,
     )
     # return HttpResponse((file.getbuffer().tobytes())

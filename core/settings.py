@@ -164,3 +164,79 @@ SANDBOX = True
 #############################################################
 
 AUTH_USER_MODEL = 'authentication.CustomUser'
+
+#############################################################
+#############################################################
+
+LOGGING = {
+    "version": 1,  # the dictConfig format version
+    "disable_existing_loggers": False,  # retain the default loggers
+    "handlers": {
+        "GENERAL": {
+            "class": "logging.FileHandler",
+            "filename": "general.log",
+            "formatter": "verbose",
+        },
+        "DEBUG": {
+            "class": "logging.FileHandler",
+            "filename": "log_debug.log",
+            "formatter": "verbose",
+        },
+        "INFO": {
+            "class": "logging.FileHandler",
+            "filename": "log_info.log",
+            "formatter": "verbose",
+        },
+        "WARNING": {
+            "class": "logging.FileHandler",
+            "filename": "log_warning.log",
+            "formatter": "verbose",
+        },
+        "ERROR": {
+            "class": "logging.FileHandler",
+            "filename": "log_error.log",
+            "formatter": "verbose",
+        },
+        "CRITICAL": {
+            "class": "logging.FileHandler",
+            "filename": "log_critical.log",
+            "formatter": "verbose",
+        },
+    },
+    "loggers": {
+        "": {
+            "level": "DEBUG",
+            "handlers": ["GENERAL"]
+        },
+        "CRITICAL": {
+            "level": "CRITICAL",
+            "handlers": ["CRITICAL"],
+        },
+        "ERROR": {
+            "level": "ERROR",
+            "handlers": ["ERROR"],
+        },
+        "WARNING": {
+            "level": "WARNING",
+            "handlers": ["WARNING"],
+        },
+        "INFO": {
+            "level": "INFO",
+            "handlers": ["INFO"],
+        },
+        "DEBUG": {
+            "level": "DEBUG",
+            "handlers": ["DEBUG"],
+        },
+    },
+    "formatters": {
+        "verbose": {
+            "format": "{name} {levelname} {asctime} {module} {process:d} {thread:d} {message}",
+            "style": "{",
+        },
+        "simple": {
+            "format": "{levelname} {message}",
+            "style": "{",
+        },
+    },
+}

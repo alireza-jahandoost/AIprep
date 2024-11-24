@@ -222,4 +222,10 @@ def generate_pdf_from_template(request, correction_id):
         full_html,
         dest=file,
     )
-    return HttpResponse(file.getbuffer().tobytes(), content_type='application/pdf')
+    response = HttpResponse(file.getbuffer().tobytes(), content_type='application/pdf')
+    file_name = ('Report of ' +
+                 correction.user.get_full_name() + " (" +
+                 correction.question_type_data.get_exam_db_name_display() +
+                 str(correction.question_type_data.exam_db_number) + ")")
+    response['Content-Disposition'] = 'attachment; filename="' + file_name + '.pdf"'
+    return response

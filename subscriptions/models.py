@@ -26,6 +26,15 @@ class Payment(models.Model):
     card_hash = models.CharField(max_length=100, null=True, blank=True)
     card_pan = models.CharField(max_length=100, null=True, blank=True)
     hide_payment = models.BooleanField(default=False)
+    discount_or_subscription_code = models.CharField(max_length=100, null=True, blank=True)
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+class SubscriptionCode(models.Model):
+    plan = models.ForeignKey(Plan, on_delete=models.CASCADE)
+    code = models.CharField(max_length=100, unique=True)
+    number_of_usages = models.IntegerField()
+
+    created_at = models.DateTimeField(auto_now_add=True)
+    expires_at = models.DateTimeField(null=True, blank=True)

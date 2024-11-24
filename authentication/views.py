@@ -19,7 +19,8 @@ from django.http import HttpResponse, HttpResponseForbidden
 from django.urls import reverse
 from sms_ir import SmsIr
 
-from subscriptions.models import Plan, Payment
+from subscriptions.helper_functions import is_subscription_code_valid
+from subscriptions.models import Plan, Payment, SubscriptionCode
 from .forms import LoginForm, SignUpForm
 
 def convert_persian_number_to_english(number):
@@ -117,6 +118,7 @@ def register_user(request):
     msg = None
     success = False
     error = False
+    subscription_code = None
 
     if request.method == "POST":
 
@@ -130,6 +132,7 @@ def register_user(request):
             # form.save()
             phone_number_user_name = form.cleaned_data.get("phone_number_user_name")
             phone_number_user_name = convert_persian_number_to_english(phone_number_user_name)
+            subscription_code = form.cleaned_data.get("subscription_code")
             if User.objects.filter(username=phone_number_user_name).exists():
                 msg = 'User with this phone number already exists. Try to login.'
                 error = True
@@ -141,12 +144,19 @@ def register_user(request):
                                            last_name=last_name)
 
                 # Activate trial
-                trial_plan = Plan.objects.filter(plan_name='Pro Plus (Trial)').get()
-                Payment.objects.create(
-                    user=user,
-                    plan=trial_plan,
-                    hide_payment=True,
-                )
+                if subscription_code and is_subscription_code_valid(subscription_code):
+                    subscription_plan = SubscriptionCode.objects.filter(code=subscription_code).get().plan
+                    Payment.objects.create(user=user,
+                                           plan=subscription_plan,
+                                           discount_or_subscription_code=subscription_code,
+                                           hide_payment=True)
+                else:
+                    trial_plan = Plan.objects.filter(plan_name='Pro Plus (Trial)').get()
+                    Payment.objects.create(
+                        user=user,
+                        plan=trial_plan,
+                        hide_payment=True,
+                    )
                 # End activate trial
 
                 msg = 'User created - please <a href="/login">login</a>.'
@@ -156,13 +166,18 @@ def register_user(request):
 
         else:
             msg = 'Form is not valid'
+            subscription_code = form.cleaned_data.get("subscription_code")
             error = True
     else:
         form = SignUpForm()
+        subscription_code = request.GET.get('subscription_code')
+        if subscription_code is not None:
+            subscription_code = subscription_code.encode('ascii', 'ignore').decode('ascii')
 
     return render(request, "accounts/register.html", {
         "form": form,
         "msg": msg,
         "success": success,
         "error": error,
+        'subscription_code': subscription_code,
     })

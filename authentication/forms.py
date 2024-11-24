@@ -67,3 +67,4 @@ class SignUpForm(forms.Form):
         widget=forms.CheckboxInput(attrs={"class": "form-check-input"}),
         error_messages={"required": "You must agree to the terms and conditions to register."},
     )
+    subscription_code = forms.CharField(max_length=100, required=False)

@@ -214,11 +214,14 @@ def generate_pdf_from_template(request, correction_id):
         pass
 
     written_answer =  "### Written Answer:\n\n" + correction.answer + "\n\n"
+    full_markdown = written_answer + \
+                    correction.correction + \
+                    "\n\n### Comparison of revised and original texts\n\n" + \
+                    comparison_html
 
     with open("correction/data/pdf_templates/plain.html") as f:
         full_html = f.read()
-        full_html = full_html.replace("[MAIN TEXT]", render_markdown(written_answer + correction.correction) +
-                                                            comparison_html)
+        full_html = full_html.replace("[MAIN TEXT]", render_markdown(full_markdown))
     file = BytesIO()
     pisa.CreatePDF(
         full_html,

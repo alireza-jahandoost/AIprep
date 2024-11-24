@@ -157,7 +157,7 @@ class CreateToeflIndependentView(View):
 
 @login_required(login_url='login')
 def ShowCorrectionsView(request):
-    corrections = Correction.objects.filter(user=request.user)
+    corrections = Correction.objects.filter(user=request.user).order_by('-created_at')
     paginator = Paginator(corrections, 25)
     url_page_number = request.GET.get('page')
     page_number = 1

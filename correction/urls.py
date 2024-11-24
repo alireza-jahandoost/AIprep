@@ -6,5 +6,5 @@ urlpatterns = [
     path('add_correction/toefl/create_independent', views.CreateToeflIndependentView.as_view(), name='create_toefl_independent'),
     path('', views.ShowCorrectionsView, name='show_corrections'),
     path('<int:correction_id>', views.ShowCorrectionView, name='show_correction'),
-    path('download_report/<int:correction_id>', views.generate_pdf_from_template, name='download_pdf'),
+    path('download_report/<int:correction_id>', views.generate_pdf_from_template, name='download_report'),
 ]

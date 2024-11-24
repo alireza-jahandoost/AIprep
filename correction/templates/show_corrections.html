@@ -60,6 +60,13 @@
                                       <a href="{% url 'show_correction' correction_id=correction.id %}">
                                           <span class="fas fa-eye fa-lg text-info" title="Show Correction"></span>
                                       </a>
+                                      {% if correction.get_status_display == 'Corrected' %}
+                                          <a href="{% url 'download_report' correction_id=correction.id %}">
+                                            <span class="fas fa-download fa-lg text-info" title="Download Report"></span>
+                                          </a>
+                                      {% else %}
+                                            <span class="fas fa-download fa-lg text-muted" title="Download Report"></span>
+                                      {% endif %}
     {#                                  {% endif %}#}
                                   </td>
                               </tr>

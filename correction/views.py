@@ -199,7 +199,9 @@ def ShowCorrectionView(request, correction_id):
 @login_required(login_url='login')
 def generate_pdf_from_template(request, correction_id):
     if request.user.correction_set.filter(pk=correction_id).exists():
-        correction = Correction.objects.get(pk=1)
+        correction = Correction.objects.get(pk=correction_id)
+        if correction.status != Correction.STATUS_CORRECTED:
+            return HttpResponseNotFound()
     else:
         return HttpResponseNotFound()
 

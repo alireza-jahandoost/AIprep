@@ -13,6 +13,7 @@ from django.contrib.auth import authenticate, login
 from django.utils import timezone
 from requests import HTTPError
 
+from app.models import Notification
 from authentication.models import CustomUser as User
 from django.forms.utils import ErrorList
 from django.http import HttpResponse, HttpResponseForbidden
@@ -150,6 +151,17 @@ def register_user(request):
                                            plan=subscription_plan,
                                            discount_or_subscription_code=subscription_code,
                                            hide_payment=True)
+                    Notification.objects.create(user=user,
+                                                title='Thank You for Using AIPrep!',
+                                                text="Dear " + user.first_name + " " + user.last_name + """,
+Thank you for using our platform. We truly appreciate your support and are delighted to have you as part of our community.
+
+If you have any feedback or need assistance, don’t hesitate to reach out—we’re here to help!
+
+Best regards,
+AIPrep team
+                    """)
+
                 else:
                     trial_plan = Plan.objects.filter(plan_name='Pro Plus (Trial)').get()
                     Payment.objects.create(
@@ -157,6 +169,16 @@ def register_user(request):
                         plan=trial_plan,
                         hide_payment=True,
                     )
+                    Notification.objects.create(user=user,
+                                                title='Welcome to AIPrep – Enjoy Your Free Gift!',
+                                                text="Dear " + user.first_name + """,
+                    Thank you for registering on our website! To help you get started, we've gifted you 1 week of free access to explore and enjoy all our features.
+
+                    We’re excited to have you on board and are here to support you every step of the way. If you have any questions, feel free to reach out!
+
+                    Happy learning,
+                    AIPrep team
+                    """)
                 # End activate trial
 
                 msg = 'User created - please <a href="/login">login</a>.'

@@ -158,7 +158,7 @@ STATICFILES_DIRS = (
 
 # Zarinpal
 MERCHANT = os.environ.get('MERCHANT')
-SANDBOX = True
+SANDBOX = os.environ.get('SANDBOX')
 
 #############################################################
 #############################################################

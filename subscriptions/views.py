@@ -16,7 +16,7 @@ from subscriptions.models import Plan, Payment
 if settings.SANDBOX:
     sandbox = 'sandbox'
 else:
-    sandbox = 'www'
+    sandbox = 'payment'
 
 ZP_API_REQUEST = f"https://{sandbox}.zarinpal.com/pg/v4/payment/request.json"
 ZP_API_VERIFY = f"https://{sandbox}.zarinpal.com/pg/v4/payment/verify.json"

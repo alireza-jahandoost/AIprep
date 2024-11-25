@@ -232,5 +232,5 @@ def generate_pdf_from_template(request, correction_id):
                  correction.user.get_full_name() + " (" +
                  correction.question_type_data.get_exam_db_name_display() +
                  str(correction.question_type_data.exam_db_number) + ")")
-    response['Content-Disposition'] = 'filename="' + file_name + '.pdf"'
+    response['Content-Disposition'] = 'attachment; filename="' + file_name + '.pdf"'
     return response

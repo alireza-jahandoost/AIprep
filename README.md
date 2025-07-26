@@ -108,3 +108,29 @@ Licensed under the MIT License. See the `LICENSE` file for details.
 ## 🤝 Contributions
 
 All contributions are welcome! Whether you're fixing bugs, improving scoring logic, or enhancing the UI, feel free to fork, commit, and open a pull request.
+
+Here’s the updated **Licensing section** and a new **"Credits / Acknowledgements"** section you can include in your `README.md` to properly reference the base project you used and the licensing details:
+
+---
+
+## 📄 License
+
+This project is licensed under the **MIT License**.
+
+You are free to use, modify, and distribute this software for personal, academic, or commercial purposes, provided that:
+
+* The original license and attribution are retained in the source code.
+* You do **not** redistribute the unmodified source as your own work.
+* You do **not** resell the source code or UI components as standalone products or templates.
+
+See the full license details in the [`LICENSE`](./LICENSE) file.
+
+---
+
+## 🙏 Acknowledgements
+
+This project is originally based on a template provided by [AppSeed](https://appseed.us/), a platform offering full-stack starter apps and dashboards.
+
+We have built upon that foundation to develop **AIprep**, a specialized tool for TOEFL writing task evaluation powered by large language models (LLMs). While the original structure and some UI components stem from the AppSeed project, the core functionality—including prompt-aware essay analysis, TOEFL scoring, PDF generation, and LLM integration—has been entirely rewritten and tailored for educational use.
+
+Special thanks to AppSeed for their open-source Django template that served as the starting point.

@@ -1,32 +1,31 @@
 # MIT License
 
-Copyright (c) 2019 - present [AppSeed](http://appseed.us/)
+Copyright (c) 2024
+**AIprep Project — Developed by Alireza Jahandoost**
 
-<br />
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to **use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies** of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
-## Licensing Information
+* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
-<br />
-
-| Item | - |
-| ---------------------------------- | --- |
-| License Type | MIT  |
-| Use for print | **YES** |
-| Create single personal website/app | **YES** |
-| Create single website/app for client | **YES** |
-| Create multiple website/apps for clients | **YES** |
-| Create multiple SaaS applications | **YES** |
-| End-product paying users | **YES** |
-| Product sale | **YES** |
-| Remove footer credits | **YES** |
-| --- | --- |
-| Remove copyright mentions from source code | NO |
-| Production deployment assistance | NO |
-| Create HTML/CSS template for sale | NO |
-| Create Theme/Template for CMS for sale | NO |
-| Separate sale of our UI Elements | NO |
-
-<br />
+* The Software is provided “as is”, without warranty of any kind, express or implied, including but not limited to the warranties of merchantability, fitness for a particular purpose, and noninfringement. In no event shall the authors or copyright holders be liable for any claim, damages, or other liability, whether in an action of contract, tort, or otherwise, arising from, out of, or in connection with the Software or the use or other dealings in the Software.
 
 ---
-For more information regarding licensing, please contact the AppSeed Service < *support@appseed.us* >
+
+## ✅ Licensing Summary
+
+| Usage Scenario                              | Allowed |
+| ------------------------------------------- | ------- |
+| Personal or academic use                    | ✅ Yes   |
+| Commercial or client projects               | ✅ Yes   |
+| SaaS applications and products              | ✅ Yes   |
+| Modify source code for private/custom use   | ✅ Yes   |
+| Generate reports and distribute output      | ✅ Yes   |
+| Remove footer credits or UI labels          | ✅ Yes   |
+| Resell as part of a paid course or software | ✅ Yes   |
+| Remove author attribution from source code  | ❌ No    |
+| Redistribute or sell source code as-is      | ❌ No    |
+| Package as a theme/template for sale        | ❌ No    |
+
+---
+
+For any exceptions, partnerships, or commercial redistribution licensing, please contact the author directly.
